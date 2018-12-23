@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   setUserStories = (array) => {
-    this.setState({ userStories: array }, () => this.logState('userStories'))
+    this.setState({ userStories: array })
   }
 
   // Fetch from database functions
@@ -58,7 +58,7 @@ class App extends Component {
 
           <Route
           exact path='/users'
-          render={props => <UserList {...props} users={this.state.users} /> }
+          render={props => <UserList {...props} users={this.state.users} setUserStories={this.setUserStories} /> }
           />
 
           <Route
