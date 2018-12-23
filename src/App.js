@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
+
+// Import components
+import NavBar from './components/NavBar'
 import UserList from './components/UserList'
+import UserProfile from './components/UserProfile'
 
-const API = 'http://localhost:3000/api/v1'
+// Set API address
+// (change back to localhost at some point so it'll stop broadcasting across network)
+const API = 'http://192.168.1.6:3000/api/v1'
 
+// App class
 class App extends Component {
 
   state = {
@@ -41,15 +48,21 @@ class App extends Component {
     .then(storiesData => this.setUserStories(storiesData))
   }
 
-  // Render
+  // Render routes
   render() {
     return (
       <Router>
         <>
           <NavBar />
+
           <Route
           exact path='/users'
-          render={props => <UserList {...props} users={this.state.users} /> }}
+          render={props => <UserList {...props} users={this.state.users} /> }
+          />
+
+          <Route
+          path='/users/:userId'
+          render={props => <UserProfile {...props} users={this.state.users} />}
           />
         </>
       </Router>

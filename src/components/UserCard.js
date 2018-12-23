@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 // This is a card for the UserList
 const UserCard = (props) => {
@@ -17,7 +18,7 @@ const UserCard = (props) => {
   // Main render
   return (
     <div>
-      <h3>{user.name}</h3>
+      <Link key={user.id} to={`/users/${user.id}`}>{user.name}</Link>
       <p>This user has {user.stories.length} stories:</p>
       {renderStories()}
       <br/>
