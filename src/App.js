@@ -6,6 +6,7 @@ import './App.css';
 import NavBar from './components/NavBar'
 import UserList from './components/UserList'
 import UserProfile from './components/UserProfile'
+import Home from './components/Home'
 
 // Set API address
 // (change back to localhost at some point so it'll stop broadcasting across network)
@@ -29,17 +30,17 @@ class App extends Component {
 
   setAppState = (object) => { this.setState(object, this.logState) }
 
-  setUsersState = (array) => {
+  setUsers = (array) => {
     this.setState({ users: array }, () => this.logState('users'))
   }
 
-  setUserStoriesState = (array) => {
+  setUserStories = (array) => {
     this.setState({ userStories: array }, () => this.logState('userStories'))
   }
 
   // Fetch from database functions
   fetchAllUsers = () => {
-    return fetch(API + '/users').then(r=>r.json()).then(userData => this.setUsersState(userData))
+    return fetch(API + '/users').then(r=>r.json()).then(userData => this.setUsers(userData))
   }
 
   fetchUserStories = (userID) => {
@@ -64,7 +65,15 @@ class App extends Component {
           path='/users/:userId'
           render={props => <UserProfile {...props}
           users={this.state.users}
-          userStories={this.state.userStories} />}
+          userStories={this.state.userStories}
+          fetchUserStories={this.fetchUserStories} />}
+          />
+
+          <Route
+          path='/'
+          exact
+          render={props => <Home {...props}
+          users={this.state.users} />}
           />
         </>
       </Router>

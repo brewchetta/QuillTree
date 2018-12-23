@@ -1,33 +1,52 @@
 import React from 'react'
+import UserStoryCards from './UserStoryCards'
 
-const UserProfile = ({match, users, userStories}) => {
-  // Define user
-  const user = users.find(user => user.id === parseInt(match.params.userId))
+export default class UserProfile extends React.Component {
 
-  // Sets userStories based on user
-  // TODO fetch stories
-  if (user) { console.log(`TODO: fetch stories for ${user.name}`) }
+  // Define userId
+  userId = parseInt(this.props.match.params.userId)
 
-  // Render for user's story cards
-  const renderStoryCards = () => {
-    return user && user.stories.length > 0
-    ? user.stories.map(story => <div key={story.id}><p>{story.title}</p></div>)
-    : <p>No stories yet!</p>
+  //Define user state
+  state = {
+    user: {name: null}
   }
 
-  if (user) {
-    return (
-      <>
-        <h2>{user.name}</h2>
+
+
+
+  componentDidMount() {
+    if (this.props.users.length === 0) {
+      this.setUserDelayed()
+    } else {
+      this.setState({ user: this.users.find(u => u.id === this.userId) })
+    }
+  }
+
+  setUser = () => {
+    this.setState({
+      user: this.props.users.find(u => u.id === this.userId)
+    })
+  }
+
+  setUserDelayed = () => {
+    if (!this.state.user || !this.state.user.name) {
+      setTimeout(this.setUser, 1000)
+      setTimeout(this.setUserDelayed, 1000)
+    }
+  }
+
+  render() {
+    console.log('User: ', this.state.user)
+    if (this.state.user && this.state.user.name) {
+      return (
+        <>
+        <h2>{this.state.user.name}</h2>
         <p>Wow! You've gotten to this page! Congratulations!</p>
-        {renderStoryCards()}
-      </>
-    )
-  } else {
-    return (
-      <p>404: That user does not exist!</p>
-    )
+        <UserStoryCards userStories={this.props.userStories} />
+        </>
+      )
+    } else {
+      return (<p>Loading</p>)
+    }
   }
 }
-
-export default UserProfile
