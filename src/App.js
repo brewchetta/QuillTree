@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import UserList from './components/UserList'
+
+const API = 'http://localhost:3000/api/v1'
 
 class App extends Component {
+
+  state = {
+    users: [],
+    stories: []
+  }
+
+  // Initializers
+  componentDidMount() {
+    this.fetchAllUsers().then(response=> {
+      this.setState({ users: response }, ()=> console.log(this.state.users))
+    })
+  }
+
+  // Fetch from database functions
+  fetchAllUsers = () => {
+    return fetch(API + '/users').then(r=>r.json())
+  }
+
+  // Props
+  setAppState = (object) => { this.setState(object) }
+
+  // Render
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <UserList users={this.state.users} />
     );
   }
 }
