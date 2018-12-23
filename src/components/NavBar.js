@@ -7,6 +7,10 @@ const NavBar = () => {
       <NavLink
       to='/users'
       exact>Users</NavLink>
+      <br/>
+      <NavLink
+      to='/'
+      exact>Home</NavLink>
     </div>
   )
 }

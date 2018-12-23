@@ -62,7 +62,9 @@ class App extends Component {
 
           <Route
           path='/users/:userId'
-          render={props => <UserProfile {...props} users={this.state.users} />}
+          render={props => <UserProfile {...props}
+          users={this.state.users}
+          userStories={this.state.userStories} />}
           />
         </>
       </Router>
