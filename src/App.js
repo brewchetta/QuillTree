@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 import UserList from './components/UserList'
 
@@ -20,7 +21,7 @@ class App extends Component {
   }
 
   setAppState = (object) => { this.setState(object, this.logState) }
-  
+
   setUsersState = (array) => {
     this.setState({ users: array }, () => this.logState('users'))
   }
@@ -43,9 +44,15 @@ class App extends Component {
   // Render
   render() {
     return (
-      <UserList
-      users={this.state.users}
-      />
+      <Router>
+        <>
+          <NavBar />
+          <Route
+          exact path='/users'
+          render={props => <UserList {...props} users={this.state.users} /> }}
+          />
+        </>
+      </Router>
     );
   }
 }
