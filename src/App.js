@@ -8,28 +8,44 @@ class App extends Component {
 
   state = {
     users: [],
-    stories: []
+    userStories: []
   }
 
   // Initializers
-  componentDidMount() {
-    this.fetchAllUsers().then(response=> {
-      this.setState({ users: response }, ()=> console.log(this.state.users))
-    })
+  componentDidMount() { this.fetchAllUsers() }
+
+  //State setter functions
+  logState = (item) => {
+    item ? console.log(`${item}: `, this.state[item]) : console.log('current state: ', this.state)
+  }
+
+  setAppState = (object) => { this.setState(object, this.logState) }
+  
+  setUsersState = (array) => {
+    this.setState({ users: array }, () => this.logState('users'))
+  }
+
+  setUserStoriesState = (array) => {
+    this.setState({ userStories: array }, () => this.logState('userStories'))
   }
 
   // Fetch from database functions
   fetchAllUsers = () => {
-    return fetch(API + '/users').then(r=>r.json())
+    return fetch(API + '/users').then(r=>r.json()).then(userData => this.setUsersState(userData))
   }
 
-  // Props
-  setAppState = (object) => { this.setState(object) }
+  fetchUserStories = (userID) => {
+    return fetch(API + '/users/' + userID + '/stories')
+    .then(r=>r.json())
+    .then(storiesData => this.setUserStories(storiesData))
+  }
 
   // Render
   render() {
     return (
-      <UserList users={this.state.users} />
+      <UserList
+      users={this.state.users}
+      />
     );
   }
 }

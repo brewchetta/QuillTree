@@ -5,9 +5,11 @@ const UserList = (props) => {
 
   // Renders all users
   const renderUsers = () => {
-    return props.users.map(user => {
-      return <UserCard key={user.name} user={user} />
-    })
+    if (props.users) {
+      return props.users.map(user => {
+        return <UserCard key={user.name} user={user} />
+      })
+    }
   }
 
   // Main render
