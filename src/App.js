@@ -24,7 +24,8 @@ class App extends Component {
 
   state = {
     users: [],
-    stories: []
+    stories: [],
+    currentUser: {}
   }
 
   // Initializers
@@ -34,6 +35,23 @@ class App extends Component {
 
   //State setter functions
   setAppState = (object) => { this.setState(object, this.logState) }
+
+  // users sorter
+  usersSort = (sortType) => {
+    return (
+      sortType === 'alphabetically' ? this.sortAlphabetically()
+      : null
+    )
+  }
+
+  sortAlphabetically = () => {
+    const sortedUsers = [...this.state.users].sort((a,b) => {
+      const aName = a.name.toLowerCase()
+      const bName = b.name.toLowerCase()
+      return aName > bName ? 1 : aName < bName ? -1 : 0
+    })
+    this.setState({ users: sortedUsers })
+  }
 
   // Fetches from database
   fetchAllUsers = () => {
@@ -61,7 +79,9 @@ class App extends Component {
           <Route
           exact
           path='/users'
-          render={props => <UserIndex {...props} users={this.state.users} /> }
+          render={props => <UserIndex {...props}
+          users={this.state.users}
+          usersSort={this.usersSort} /> }
           />
 
           <Route
