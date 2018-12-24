@@ -19,9 +19,7 @@ class App extends Component {
 
   state = {
     users: [],
-    stories: [],
-    userStories: [],
-    userId: 0
+    stories: []
   }
 
   // Initializers
@@ -32,23 +30,13 @@ class App extends Component {
   //State setter functions
   setAppState = (object) => { this.setState(object, this.logState) }
 
-  setUserId = (id) => {
-    this.setState({ userId: id }, () => this.fetchUserStories(id))
-  }
-
-  // Fetch from database functions
+  // Fetches from database
   fetchAllUsers = () => {
     return fetch(API + '/users').then(r=>r.json()).then(userData => this.setAppState({ users: userData }))
   }
 
   fetchAllStories = () => {
     return fetch(API + '/stories').then(r=>r.json()).then(storyData=> this.setAppState({ stories: storyData }))
-  }
-
-  fetchUserStories = (userID) => {
-    return fetch(API + '/users/' + userID + '/stories')
-    .then(r=>r.json())
-    .then(storiesData => this.setUserStories(storiesData))
   }
 
   // Render routes
