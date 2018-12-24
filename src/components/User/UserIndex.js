@@ -10,11 +10,14 @@ class UserIndex extends React.Component {
   // Renders all users
   renderUsers = () => {
     if (this.props.users) {
-      return this.props.users.slice(0,49).map(user => {
+      return this.props.users
+      .map(user => {
         return user.name.toLowerCase().includes(this.state.searchInput.toLowerCase()) ?
         <UserCard key={user.name} user={user} />
         : null
       })
+      .filter(user => user !== null)
+      .slice(0,5)
     }
   }
 
