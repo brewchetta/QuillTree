@@ -11,7 +11,7 @@ const UserCard = (props) => {
   // Render prominent stories
   function renderStories() {
     return stories.map(story => {
-      return <p key={story.id}>{story.title}</p>
+      return <p key={story.id} story={story} user={user}>{story.title}</p>
     })
   }
 

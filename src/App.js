@@ -7,21 +7,26 @@ import NavBar from './components/NavBar'
 import UserList from './components/UserList'
 import UserProfile from './components/UserProfile'
 import Home from './components/Home'
+import StoryContainer from './components/StoryContainer'
 
 // Set API address
 // (change back to localhost at some point so it'll stop broadcasting across network)
-const API = 'http://192.168.1.6:3000/api/v1'
+const API = 'http://192.168.1.7:3000/api/v1'
 
 // App class
 class App extends Component {
 
   state = {
     users: [],
-    userStories: []
+    stories: [],
+    userStories: [],
+    userId: 0
   }
 
   // Initializers
-  componentDidMount() { this.fetchAllUsers() }
+  componentDidMount() {
+    this.fetchAllUsers()
+    this.fetchAllStories() }
 
   //State setter functions
   logState = (item) => {
@@ -34,13 +39,25 @@ class App extends Component {
     this.setState({ users: array }, () => this.logState('users'))
   }
 
+  setStories = (array) => {
+    this.setState({ stories: array }, () => this.logState('stories'))
+  }
+
   setUserStories = (array) => {
     this.setState({ userStories: array })
+  }
+
+  setUserId = (id) => {
+    this.setState({ userId: id }, () => this.fetchUserStories(id))
   }
 
   // Fetch from database functions
   fetchAllUsers = () => {
     return fetch(API + '/users').then(r=>r.json()).then(userData => this.setUsers(userData))
+  }
+
+  fetchAllStories = () => {
+    return fetch(API + '/stories').then(r=>r.json()).then(storyData=> this.setStories(storyData))
   }
 
   fetchUserStories = (userID) => {
@@ -63,10 +80,11 @@ class App extends Component {
 
           <Route
           path='/users/:userId'
+          exact
           render={props => <UserProfile {...props}
           users={this.state.users}
           userStories={this.state.userStories}
-          fetchUserStories={this.fetchUserStories} />}
+          setUserId={this.setUserId} />}
           />
 
           <Route
@@ -74,6 +92,14 @@ class App extends Component {
           exact
           render={props => <Home {...props}
           users={this.state.users} />}
+          />
+
+          <Route
+          path='/stories/:storyId'
+          exact
+          render={props => <StoryContainer {...props}
+          users={this.state.users}
+          stories={this.state.stories} />}
           />
         </>
       </Router>
