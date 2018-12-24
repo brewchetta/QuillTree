@@ -9,6 +9,10 @@ const NavBar = () => {
       exact>Users</NavLink>
       <br/>
       <NavLink
+      to='/stories'
+      exact>Stories</NavLink>
+      <br/>
+      <NavLink
       to='/'
       exact>Home</NavLink>
     </div>

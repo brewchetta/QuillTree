@@ -8,6 +8,7 @@ import UserList from './components/UserList'
 import UserProfile from './components/UserProfile'
 import Home from './components/Home'
 import StoryContainer from './components/StoryContainer'
+import StoryIndex from './components/StoryIndex'
 
 // Set API address
 // (change back to localhost at some point so it'll stop broadcasting across network)
@@ -99,6 +100,13 @@ class App extends Component {
           exact
           render={props => <StoryContainer {...props}
           users={this.state.users}
+          stories={this.state.stories} />}
+          />
+
+          <Route
+          path='/stories'
+          exact
+          render={props => <StoryIndex {...props}
           stories={this.state.stories} />}
           />
         </>
