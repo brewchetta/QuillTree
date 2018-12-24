@@ -11,7 +11,12 @@ const UserCard = (props) => {
   // Render prominent stories
   function renderStories() {
     return stories.map(story => {
-      return <p key={story.id} story={story} user={user}>{story.title}</p>
+      return (
+        <div key={story.id}>
+        <Link to={`/stories/${story.id}`}>{story.title}</Link>
+        <br/>
+        </div>
+      )
     })
   }
 
@@ -21,6 +26,7 @@ const UserCard = (props) => {
       <Link key={user.id} to={`/users/${user.id}`}>{user.name}</Link>
       <p>This user has {user.stories.length} stories:</p>
       {renderStories()}
+      <p>----------</p>
       <br/>
     </div>
   )
