@@ -29,15 +29,18 @@ class UserIndex extends React.Component {
     return (
       <div>
         <div>
-        <button onClick={this.props.usersSort}>A-Z</button>
-        <button>Most Stories</button>
-        <button>Least Stories</button>
+          <button onClick={()=>this.props.usersSort('alphabetically')}>Names A-Z</button>
+          <button onClick={()=>this.props.usersSort('reverseAlphabetically')}>Names Z-A</button>
+          <button onClick={()=>this.props.usersSort('mostStories')}>Most Stories</button>
+          <button onClick={()=>this.props.usersSort('leastStories')}>Least Stories</button>
         </div>
+
         <input type='text'
         name='searchInput'
         placeholder='Search Users'
         value={this.state.searchInput}
         onChange={this.handleInput} />
+
         <h2>USER LIST</h2>
         {this.renderUsers()}
       </div>
