@@ -5,11 +5,14 @@ import './App.css';
 // Import components
 import NavBar from './components/NavBar'
 import Home from './components/Home'
+import Footer from './components/Footer.js'
+// User
 import UserIndex from './components/User/UserIndex'
 import UserProfile from './components/User/UserProfile'
+import UserCreate from './components/User/UserCreate'
+// Story
 import StoryIndex from './components/Story/StoryIndex'
 import StoryContainer from './components/Story/StoryContainer'
-import Footer from './components/Footer.js'
 
 // Set API address
 // TODO: change back to localhost at some point so it'll stop broadcasting across network
@@ -40,6 +43,21 @@ class App extends Component {
     return fetch(API + '/stories').then(r=>r.json()).then(storyData=> this.setAppState({ stories: storyData }))
   }
 
+  userSubmit = (inputObject) => {
+    this.fetchUserSubmit(inputObject).then(r=>r.json()).then(user=> console.log(user))
+  }
+
+  fetchUserSubmit = (inputObject) => {
+    return fetch(API + '/users', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({user: inputObject})
+    })
+  }
+
   // Render routes
   render() {
     return (
@@ -55,17 +73,24 @@ class App extends Component {
           />
 
           <Route
-          exact path='/users'
-          render={props => <UserIndex {...props} users={this.state.users} setUserStories={this.setUserStories} /> }
+          exact
+          path='/users'
+          render={props => <UserIndex {...props} users={this.state.users} /> }
+          />
+
+          <Route
+          exact
+          path='/signup'
+          render={props => <UserCreate {...props}
+          users={this.state.users}
+          userSubmit={this.userSubmit} /> }
           />
 
           <Route
           path='/users/:userId'
           exact
           render={props => <UserProfile {...props}
-          users={this.state.users}
-          userStories={this.state.userStories}
-          setUserId={this.setUserId} />}
+          users={this.state.users} />}
           />
 
           <Route
