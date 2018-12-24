@@ -45,9 +45,8 @@ class App extends Component {
 
   userSubmit = (event, inputObject) => {
     event.preventDefault()
-    console.log('Creating ', inputObject)
-    console.log('-----')
-    this.fetchUserSubmit(inputObject).then(r=>r.json()).then(user=> console.log('Hello!'))
+    console.log('-----Creating-----')
+    this.fetchUserSubmit(inputObject).then(r=>r.json()).then(user=> console.log(user)).catch(response=> console.log(response))
   }
 
   fetchUserSubmit = (inputObject) => {
