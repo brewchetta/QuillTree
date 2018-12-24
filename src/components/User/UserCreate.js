@@ -7,15 +7,38 @@ export default class UserCreate extends React.Component {
     bio: ''
   }
 
+  // State change on input
   handleInput = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
   }
 
+  // Handle submit functions
+  handleSubmit = (event) => {
+    event.preventDefault()
+    console.log('-----Creating-----')
+    this.fetchUserSubmit(this.state)
+    .then(this.props.fetchAllUsers)
+    .then(() => this.props.history.push('/users'))
+    .catch(response=> console.log(response))
+  }
+
+  fetchUserSubmit = (inputObject) => {
+    return fetch(this.props.API + '/users', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({user: inputObject})
+    })
+  }
+
+  // Main render
   render() {
     return (
-      <form onSubmit={(event) => this.props.userSubmit(event, this.state)}>
+      <form onSubmit={this.handleSubmit}>
 
         <br/>
         <label name='name'>Name</label>
@@ -34,7 +57,7 @@ export default class UserCreate extends React.Component {
         value={this.state.bio} />
         <br/>
 
-        <button onClick={(event) => this.props.userSubmit(event, this.state)}>Submit</button>
+        <button onClick={this.handleSubmit}>Submit</button>
 
       </form>
     )

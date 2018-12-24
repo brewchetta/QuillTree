@@ -14,12 +14,13 @@ import UserCreate from './components/User/UserCreate'
 import StoryIndex from './components/Story/StoryIndex'
 import StoryContainer from './components/Story/StoryContainer'
 
-// Set API address
-// TODO: change back to localhost at some point so it'll stop broadcasting across network
-const API = 'http://192.168.1.7:3000/api/v1'
 
 // App class
 class App extends Component {
+
+  // Set API address
+  // TODO: change back to localhost at some point so it'll stop broadcasting across network
+  API = 'http://192.168.1.7:3000/api/v1'
 
   state = {
     users: [],
@@ -36,28 +37,11 @@ class App extends Component {
 
   // Fetches from database
   fetchAllUsers = () => {
-    return fetch(API + '/users').then(r=>r.json()).then(userData => this.setAppState({ users: userData }))
+    return fetch(this.API + '/users').then(r=>r.json()).then(userData => this.setAppState({ users: userData }))
   }
 
   fetchAllStories = () => {
-    return fetch(API + '/stories').then(r=>r.json()).then(storyData=> this.setAppState({ stories: storyData }))
-  }
-
-  userSubmit = (event, inputObject) => {
-    event.preventDefault()
-    console.log('-----Creating-----')
-    this.fetchUserSubmit(inputObject).then(r=>r.json()).then(user=> console.log(user)).catch(response=> console.log(response))
-  }
-
-  fetchUserSubmit = (inputObject) => {
-    return fetch(API + '/users', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({user: inputObject})
-    })
+    return fetch(this.API + '/stories').then(r=>r.json()).then(storyData=> this.setAppState({ stories: storyData }))
   }
 
   // Render routes
@@ -85,7 +69,8 @@ class App extends Component {
           path='/signup'
           render={props => <UserCreate {...props}
           users={this.state.users}
-          userSubmit={this.userSubmit} /> }
+          fetchAllUsers={this.fetchAllUsers}
+          API={this.API} /> }
           />
 
           <Route
