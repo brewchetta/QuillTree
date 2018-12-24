@@ -9,10 +9,11 @@ class UserIndex extends React.Component {
 
   // Renders all users
   renderUsers = () => {
+    const searchInput = this.state.searchInput.toLowerCase()
     if (this.props.users) {
       return this.props.users
       .map(user => {
-        return user.name.toLowerCase().includes(this.state.searchInput.toLowerCase()) ?
+        return user.name.toLowerCase().includes(searchInput) || user.stories.map(story=>story.title.toLowerCase().includes(searchInput)).includes(true) ?
         <UserCard key={user.name} user={user} />
         : null
       })
@@ -40,7 +41,7 @@ class UserIndex extends React.Component {
 
         <input type='text'
         name='searchInput'
-        placeholder='Search Users'
+        placeholder='Search Users & Titles'
         value={this.state.searchInput}
         onChange={this.handleInput} />
 
