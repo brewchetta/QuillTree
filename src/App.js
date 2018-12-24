@@ -11,7 +11,7 @@ import StoryContainer from './components/Story/StoryContainer'
 import StoryIndex from './components/Story/StoryIndex'
 
 // Set API address
-// (change back to localhost at some point so it'll stop broadcasting across network)
+// TODO: change back to localhost at some point so it'll stop broadcasting across network
 const API = 'http://192.168.1.7:3000/api/v1'
 
 // App class
@@ -30,23 +30,7 @@ class App extends Component {
     this.fetchAllStories() }
 
   //State setter functions
-  logState = (item) => {
-    item ? console.log(`${item}: `, this.state[item]) : console.log('current state: ', this.state)
-  }
-
   setAppState = (object) => { this.setState(object, this.logState) }
-
-  setUsers = (array) => {
-    this.setState({ users: array }, () => this.logState('users'))
-  }
-
-  setStories = (array) => {
-    this.setState({ stories: array }, () => this.logState('stories'))
-  }
-
-  setUserStories = (array) => {
-    this.setState({ userStories: array })
-  }
 
   setUserId = (id) => {
     this.setState({ userId: id }, () => this.fetchUserStories(id))
@@ -54,11 +38,11 @@ class App extends Component {
 
   // Fetch from database functions
   fetchAllUsers = () => {
-    return fetch(API + '/users').then(r=>r.json()).then(userData => this.setUsers(userData))
+    return fetch(API + '/users').then(r=>r.json()).then(userData => this.setAppState({ users: userData }))
   }
 
   fetchAllStories = () => {
-    return fetch(API + '/stories').then(r=>r.json()).then(storyData=> this.setStories(storyData))
+    return fetch(API + '/stories').then(r=>r.json()).then(storyData=> this.setAppState({ stories: storyData }))
   }
 
   fetchUserStories = (userID) => {
