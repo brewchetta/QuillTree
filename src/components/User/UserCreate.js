@@ -15,7 +15,7 @@ export default class UserCreate extends React.Component {
 
   render() {
     return (
-      <form onSubmit={() => this.props.userSubmit(this.state)}>
+      <form onSubmit={(event) => this.props.userSubmit(event, this.state)}>
 
         <br/>
         <label name='name'>Name</label>
@@ -34,7 +34,7 @@ export default class UserCreate extends React.Component {
         value={this.state.bio} />
         <br/>
 
-        <button>Submit</button>
+        <button onClick={(event) => this.props.userSubmit(event, this.state)}>Submit</button>
 
       </form>
     )

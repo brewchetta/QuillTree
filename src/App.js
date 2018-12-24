@@ -43,8 +43,11 @@ class App extends Component {
     return fetch(API + '/stories').then(r=>r.json()).then(storyData=> this.setAppState({ stories: storyData }))
   }
 
-  userSubmit = (inputObject) => {
-    this.fetchUserSubmit(inputObject).then(r=>r.json()).then(user=> console.log(user))
+  userSubmit = (event, inputObject) => {
+    event.preventDefault()
+    console.log('Creating ', inputObject)
+    console.log('-----')
+    this.fetchUserSubmit(inputObject).then(r=>r.json()).then(user=> console.log('Hello!'))
   }
 
   fetchUserSubmit = (inputObject) => {
