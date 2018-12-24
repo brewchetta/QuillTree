@@ -1,7 +1,7 @@
 import React from 'react'
 import UserCard from './UserCard'
 
-const UserList = (props) => {
+const UserIndex = (props) => {
 
   // Renders all users
   const renderUsers = () => {
@@ -21,4 +21,4 @@ const UserList = (props) => {
   )
 }
 
-export default UserList
+export default UserIndex

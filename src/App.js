@@ -4,11 +4,12 @@ import './App.css';
 
 // Import components
 import NavBar from './components/NavBar'
-import UserList from './components/User/UserList'
-import UserProfile from './components/User/UserProfile'
 import Home from './components/Home'
-import StoryContainer from './components/Story/StoryContainer'
+import UserIndex from './components/User/UserIndex'
+import UserProfile from './components/User/UserProfile'
 import StoryIndex from './components/Story/StoryIndex'
+import StoryContainer from './components/Story/StoryContainer'
+import Footer from './components/Footer.js'
 
 // Set API address
 // TODO: change back to localhost at some point so it'll stop broadcasting across network
@@ -47,8 +48,15 @@ class App extends Component {
           <NavBar />
 
           <Route
+          path='/'
+          exact
+          render={props => <Home {...props}
+          users={this.state.users} />}
+          />
+
+          <Route
           exact path='/users'
-          render={props => <UserList {...props} users={this.state.users} setUserStories={this.setUserStories} /> }
+          render={props => <UserIndex {...props} users={this.state.users} setUserStories={this.setUserStories} /> }
           />
 
           <Route
@@ -58,13 +66,6 @@ class App extends Component {
           users={this.state.users}
           userStories={this.state.userStories}
           setUserId={this.setUserId} />}
-          />
-
-          <Route
-          path='/'
-          exact
-          render={props => <Home {...props}
-          users={this.state.users} />}
           />
 
           <Route
@@ -81,6 +82,8 @@ class App extends Component {
           render={props => <StoryIndex {...props}
           stories={this.state.stories} />}
           />
+
+          <Footer />
         </>
       </Router>
     );
