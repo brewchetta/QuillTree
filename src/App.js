@@ -4,11 +4,11 @@ import './App.css';
 
 // Import components
 import NavBar from './components/NavBar'
-import UserList from './components/UserList'
-import UserProfile from './components/UserProfile'
+import UserList from './components/User/UserList'
+import UserProfile from './components/User/UserProfile'
 import Home from './components/Home'
-import StoryContainer from './components/StoryContainer'
-import StoryIndex from './components/StoryIndex'
+import StoryContainer from './components/Story/StoryContainer'
+import StoryIndex from './components/Story/StoryIndex'
 
 // Set API address
 // (change back to localhost at some point so it'll stop broadcasting across network)
