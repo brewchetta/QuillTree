@@ -2,36 +2,40 @@ import React from 'react'
 
 export default class PageContainer extends React.Component {
 
-  state = {
-    page: {},
-    edit: false,
-    content: ''
-  }
-
   // Define User and Story
   storyId = parseInt(this.props.match.params.storyId)
   story = null
   user = null
 
-  // Fetch page if it hasn't been yet
+  //Define initial state
+  state = {
+    page: {},
+    edit: false
+  }
+
+  // Fetch page if it hasn't been loaded yet
   handleFetchPage = () => {
-    if (this.state.page.id && this.state.page.id === parseInt(this.props.match.params.pageId)) {
-    } else if (this.story && this.user) {
-      this.props.fetchPage(this.user.id, this.story.id, this.props.match.params.pageId)
-      .then(page => this.setState({ page: page, content: page.content }))
+    if (this.story && this.user && this.state.page.id !== parseInt(this.props.match.params.pageId)) {
+      this.props.fetchPage(this.props.match.params.pageId)
+        .then(page => this.setState({ page: page, content: page.content }))
     }
   }
 
+  // Starts edit mode
   handleClickEdit = () => {
     this.setState({ edit: true })
   }
 
+  // Sends update request and changes back to read mode
   handleClickSave = () => {
+    this.props.fetchUpdatePage(this.state.page).then(r => console.log(r))
     this.setState({ edit: false })
   }
 
+  // Changes page's content
   handleChange = (event) => {
-    this.setState({ content: event.target.value })
+    this.setState({ page: {...this.state.page, content: event.target.value }})
+    console.log(this.state.page.content)
   }
 
   // Main render
@@ -47,7 +51,7 @@ export default class PageContainer extends React.Component {
         <p>Page #{this.state.page.number}</p>
         <p>Image: {this.state.page.image}</p>
 
-        { this.state.edit ? <textarea value={this.state.content} onChange={this.handleChange}/> : <p>Content: {this.state.page.content}</p> }
+        { this.state.edit ? <textarea value={this.state.page.content} onChange={this.handleChange}/> : <p>Content: {this.state.page.content}</p> }
 
         { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> : <button onClick={this.handleClickEdit}>Edit</button> }
       </div>
