@@ -91,10 +91,15 @@ class App extends Component {
     return fetch(this.API + '/stories').then(r=>r.json()).then(storyData=> this.setAppState({ stories: storyData }))
   }
 
+  fetchPage = (userID, storyID, pageID) => {
+    return fetch(this.API + `/users/${userID}/stories/${storyID}/pages/${pageID}`)
+    .then(r=>r.json())
+  }
+
   fetchCreatePage = (event) => {
     const userID = event.target.dataset.userid
     const storyID = event.target.dataset.storyid
-    return fetch(this.API + `/users/${userID}/stories/${storyID}/pages`, {
+    return fetch(this.API + `/users/${userID}/stories/${storyID}`, {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify({page: {story_id: storyID, content: '', image: ''}})
@@ -160,7 +165,8 @@ class App extends Component {
           exact
           render={props => <PageContainer {...props}
           users={this.state.users}
-          stories={this.state.stories} />}
+          stories={this.state.stories}
+          fetchPage={this.fetchPage}  />}
           />
 
           <Footer />
