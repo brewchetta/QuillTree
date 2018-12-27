@@ -13,6 +13,8 @@ import UserCreate from './components/User/UserCreate'
 // Story
 import StoryIndex from './components/Story/StoryIndex'
 import StoryContainer from './components/Story/StoryContainer'
+// Page
+import PageContainer from './components/Page/PageContainer'
 
 
 // App class
@@ -20,7 +22,8 @@ class App extends Component {
 
   // Set API address
   // TODO: change back to localhost at some point so it'll stop broadcasting across network
-  API = 'http://192.168.1.7:3000/api/v1'
+  // IMPORTANT: Be certain to change this in StoryContainer as well
+  API = 'http://192.168.1.6:3000/api/v1'
 
   state = {
     users: [],
@@ -88,6 +91,16 @@ class App extends Component {
     return fetch(this.API + '/stories').then(r=>r.json()).then(storyData=> this.setAppState({ stories: storyData }))
   }
 
+  fetchCreatePage = (event) => {
+    const userID = event.target.dataset.userid
+    const storyID = event.target.dataset.storyid
+    return fetch(this.API + `/users/${userID}/stories/${storyID}/pages`, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({page: {story_id: storyID, content: '', image: ''}})
+    }).then(r=>r.json())
+  }
+
   // Render routes
   render() {
     return (
@@ -131,13 +144,22 @@ class App extends Component {
           exact
           render={props => <StoryContainer {...props}
           users={this.state.users}
-          stories={this.state.stories} />}
+          stories={this.state.stories}
+          fetchCreatePage={this.fetchCreatePage} />}
           />
 
           <Route
           path='/stories'
           exact
           render={props => <StoryIndex {...props}
+          stories={this.state.stories} />}
+          />
+
+          <Route
+          path='/stories/:storyId/pages/:pageId'
+          exact
+          render={props => <PageContainer {...props}
+          users={this.state.users}
           stories={this.state.stories} />}
           />
 
