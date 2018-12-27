@@ -168,7 +168,7 @@ class App extends Component {
           />
 
           <Route
-          path='/stories/:storyId/pages/:pageId'
+          path='/stories/:storyId/page/:pageId'
           exact
           render={props => <PageContainer {...props}
           users={this.state.users}
