@@ -106,6 +106,14 @@ class App extends Component {
     }).then(r=>r.json())
   }
 
+  fetchUpdatePage = (page) => {
+    return fetch(this.API + `/users/${userID}/stories/${storyID}/pages/${page.id}`, {
+      method: 'PATCH',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({page: page })
+    }).then(r=>r.json())
+  }
+
   // Render routes
   render() {
     return (
@@ -166,7 +174,8 @@ class App extends Component {
           render={props => <PageContainer {...props}
           users={this.state.users}
           stories={this.state.stories}
-          fetchPage={this.fetchPage}  />}
+          fetchPage={this.fetchPage}
+          fetchUpdatePage={this.fetchUpdatePage}  />}
           />
 
           <Footer />
