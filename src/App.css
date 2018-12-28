@@ -23,6 +23,18 @@ body {
   color: #fffae6;
   margin-right: 1em;
 }
+/*  */
+
+/* Loading Images */
+@keyframes loading-normal {
+
+}
+
+.loading-container {
+
+}
+
+/*  */
 
 
 /* Home */
@@ -96,6 +108,50 @@ body {
 
 .image-right > img {
   width: 100%;
+  z-index: -1;
+}
+/*  */
+
+/* User Index */
+.user-index {
+  background: rgba(0,0,0,0);
+  padding-top: 2em;
+}
+
+.user-index > h2 {
+background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 250, 230, 1), rgba(255, 250, 230, 0));
+}
+
+.user-index > img {
+  width: 100%;
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.user-index-card-container {
+  width: 100vw;
+  padding-bottom: 4em;
+}
+
+.user-index-card {
+  color: black;
+  display: inline-block;
+  background-color: rgba(255, 250, 230);
+  width: 20em;
+  height: 8em;
+  overflow: hidden;
+  margin: 5px;
+  padding: 0.5em;
+  text-decoration: none;
+  text-align: left;
+  border-radius: 3px;
+}
+
+.user-index-card > div > a {
+  text-decoration: none;
+  position: relative;
 }
 /*  */
 

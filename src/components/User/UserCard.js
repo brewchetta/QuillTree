@@ -17,18 +17,15 @@ const UserCard = (props) => {
         <br/>
         </div>
       )
-    })
+    }).slice(0,3)
   }
 
   // Main render
   return (
-    <div>
-      <Link key={user.id} to={`/users/${user.id}`}>{user.name}</Link>
-      <p>This user has {user.stories.length} stories:</p>
-      {renderStories()}
-      <p>----------</p>
-      <br/>
-    </div>
+    <Link className='user-index-card' key={user.id} to={`/users/${user.id}`}>{user.name}
+    <p>This user has started {user.stories.length} stories</p>
+    {renderStories()}
+    </Link>
   )
 }
 

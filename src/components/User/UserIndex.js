@@ -18,7 +18,7 @@ class UserIndex extends React.Component {
         : null
       })
       .filter(user => user !== null)
-      .slice(0,5)
+      .slice(0,12)
     }
   }
 
@@ -31,7 +31,10 @@ class UserIndex extends React.Component {
   // Main render
   render() {
     return (
-      <div>
+      <div className='user-index'>
+
+        <h2>USER LIST</h2>
+
         <div>
           <button onClick={()=>this.props.usersSort('alphabetically')}>Names A-Z</button>
           <button onClick={()=>this.props.usersSort('reverseAlphabetically')}>Names Z-A</button>
@@ -45,11 +48,16 @@ class UserIndex extends React.Component {
         value={this.state.searchInput}
         onChange={this.handleInput} />
 
-        <h2>USER LIST</h2>
-        {this.renderUsers()}
+        <div className='user-index-card-container'>
+          {this.renderUsers()}
+        </div>
+
+        <img src='https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80' />
+
       </div>
     )
   }
+  // Photo Credit: Steven Kamenar | @skamenar
 
 }
 
