@@ -1,14 +1,13 @@
 body {
   padding: 0;
   margin: 0;
-  margin-top: 2em;
   text-align: center;
 }
 
+/* Navbar */
 .navbar {
   position: fixed;
   top: 0;
-  color: white;
   background: black;
   width: 100%;
 }
@@ -21,23 +20,86 @@ body {
 
 .navbar > div > a {
   text-decoration: none;
-  color: white;
+  color: #fffae6;
   margin-right: 1em;
 }
 
-.title-container {
-  text-align: left;
-  background-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
-  color: white;
-  padding: 0.1em;
-}
 
+/* Home */
 #home-main {
-  background-image: url('./assets/ju-on-1113552-unsplash.jpg');
-  height: 90vh;
+  background-image: url('https://images.unsplash.com/photo-1472448352019-15f4081b66a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1568&q=80');
+  /* Photo credit: nikita velikanin | @nikita_v */
+  height: 95vh;
   background-size: cover;
 }
 
+.home-title {
+  float: left;
+  clear: both;
+  text-align: left;
+  background-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
+  color: white;
+  padding: 0.1em;
+  width: 50%;
+}
+
+.home-tile-container {
+  margin: 1em;
+}
+
+.home-info {
+  text-align: left;
+  padding: 0.5em;
+  float: left;
+  clear: both;
+  color: black;
+  background: rgba(255, 250, 230);
+  font-size: 1.2em;
+  border-radius: 1px;
+}
+
+.home-story-tile {
+  width: 24%;
+  height: 100px;
+  float: left;
+  text-align: center;
+}
+
+.home-story-tile > img {
+  width: 80%;
+}
+
+.home-story-tile > p {
+  width: 90%;
+}
+
+/*  */
+
+/* Page Format: Image Right */
+.image-right-text {
+  width: 100vw;
+  background-image: linear-gradient(to right, rgba(255, 250, 230), rgba(255, 250, 230, 0.7), rgba(255, 250, 230, 0));
+  text-align: left;
+  margin-top: 1em;
+  padding-top: 10vh;
+  padding-left: 1em;
+  height: 90vh;
+}
+
+.image-right {
+  position: fixed;
+  right: 0;
+  top: 1em;
+  width: 100vw;
+  z-index: -1;
+}
+
+.image-right > img {
+  width: 100%;
+}
+/*  */
+
+/* Footer */
 footer {
   position: fixed;
   bottom: 0;
@@ -46,6 +108,12 @@ footer {
   color: white;
 }
 
-footer > p {
-  margin: 0.5em;
+footer > div {
+  width: 49vw;
+  float: left;
+  text-align: left;
+}
+
+#photo-credit {
+  text-align: right;
 }
