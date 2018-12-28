@@ -1,4 +1,5 @@
 import React from 'react'
+import LoadingMedium from '../LoadingMedium'
 
 export default class UserCreate extends React.Component {
 
@@ -60,11 +61,13 @@ export default class UserCreate extends React.Component {
           value={this.state.bio} />
           <br/>
 
+          <LoadingMedium />
+
           <button onClick={this.handleSubmit}>Submit</button>
 
         </form>
         <div className='image-right'>
-          <img src='https://images.unsplash.com/photo-1517419044068-b406d7e6972d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1537&q=80' />
+          <img alt='scissors' src='https://images.unsplash.com/photo-1517419044068-b406d7e6972d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1537&q=80' />
         </div>
       </div>
     )
