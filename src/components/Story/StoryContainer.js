@@ -1,5 +1,6 @@
 import React from 'react'
-import StoryPageCards from './StoryPageCards'
+import StoryPageOptions from './StoryPageOptions'
+import LoadingMedium from '../LoadingMedium'
 
 const StoryContainer = (props) => {
 
@@ -12,8 +13,8 @@ const StoryContainer = (props) => {
     props.fetchCreatePage(event).then(page => props.history.push(`${props.match.url}/pages/${page.number}`))
   }
 
-  // Renders either a link to start the story or a dropdown for pages
-  const renderPageCount = () => {
+  // Renders a link to start the story
+  const renderPageStart = () => {
     if (story.pages.length === 0) {
       return (
         <button
@@ -21,29 +22,31 @@ const StoryContainer = (props) => {
         data-userid={story.user_id}
         data-storyid={story.id}>Initialize Pages</button>
       )
-    } else {
-      return (
-        <p>This story has pages</p>
-      )
     }
+  }
+
+  const handlePageSelect = (event) => {
+    props.history.push(props.match.url + `/page/${event.target.value}`)
   }
 
   // Renders story if exists
   if (story) {
     return (
-      <div>
+      <>
+      <img src={story.image} alt={story.title} className='image-right' />
+      <div className='image-right-text'>
         <p>{story.title}</p>
         <p>by {user.name}</p>
         <p>{story.description}</p>
-        <img src={story.image} alt={story.title} />
-        <StoryPageCards pages={story.pages} story={story} />
-        {renderPageCount()}
+        {renderPageStart()}
+        {story.pages.length > 0 ? <StoryPageOptions handlePageSelect={handlePageSelect} pages={story.pages} /> : null }
       </div>
+      </>
     )
   } else {
     return (
       <div>
-        <h2>Loading</h2>
+        <LoadingMedium />
       </div>
     )
   }

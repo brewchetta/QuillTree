@@ -1,4 +1,6 @@
 body {
+  background: black;
+  color: white;
   padding: 0;
   margin: 0;
   text-align: center;
@@ -33,6 +35,7 @@ body {
 
 .loading-container {
   margin: auto;
+  margin-top: 3em;
   width: 120px;
 }
 
@@ -99,13 +102,14 @@ body {
 
 /* Page Format: Image Right */
 .image-right-text {
-  width: 100vw;
+  width: 90vw;
   background-image: linear-gradient(to right, rgba(255, 250, 230), rgba(255, 250, 230, 0.7), rgba(255, 250, 230, 0));
   text-align: left;
   margin-top: 1em;
+  padding-left: 5vw;
   padding-top: 10vh;
-  padding-left: 1em;
-  height: 90vh;
+  min-height: 85vh;
+  color: black;
 }
 
 .image-right {
@@ -188,7 +192,8 @@ background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 25
 }
 
 .user-story-container {
-  width: 30em;
+  width: 20em;
+  margin-bottom: 4em;
 }
 
 .user-story-card {
@@ -207,6 +212,13 @@ background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 25
   top: -2em;
   width: 30em;
 }
+/*  */
+
+/* Story Container */
+.story-container {
+
+}
+
 /*  */
 
 /* Footer */
