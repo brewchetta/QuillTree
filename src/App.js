@@ -22,7 +22,6 @@ class App extends Component {
 
   // Set API address
   // TODO: change back to localhost at some point so it'll stop broadcasting across network
-  // IMPORTANT: Be certain to change this in StoryContainer as well
   API = 'http://192.168.1.2:3000/api/v1'
 
   state = {
@@ -113,6 +112,10 @@ class App extends Component {
     }).then(r=>r.json())
   }
 
+  fetchDeletePage = (page) => {
+    return fetch(this.API + `/pages/${page.id}`, { method: 'DELETE' }).then(r => this.fetchShiftPages(page, true))
+  }
+
   // Render routes
   render() {
     return (
@@ -175,7 +178,8 @@ class App extends Component {
           stories={this.state.stories}
           fetchPage={this.fetchPage}
           fetchUpdatePage={this.fetchUpdatePage}
-          fetchCreatePage={this.fetchCreatePage}  />}
+          fetchCreatePage={this.fetchCreatePage}
+          fetchShiftPages={this.fetchShiftPages}  />}
           />
 
           <Footer />

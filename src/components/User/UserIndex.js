@@ -1,5 +1,6 @@
 import React from 'react'
 import UserCard from './UserCard'
+import LoadingMedium from '../LoadingMedium'
 
 class UserIndex extends React.Component {
 
@@ -30,32 +31,33 @@ class UserIndex extends React.Component {
 
   // Main render
   render() {
-    return (
-      <div className='user-index'>
+    if (this.props.users.length) {
+      return (
+        <div className='user-index'>
 
-        <h2>USER LIST</h2>
+          <div>
+            <button onClick={()=>this.props.usersSort('alphabetically')}>Names A-Z</button>
+            <button onClick={()=>this.props.usersSort('reverseAlphabetically')}>Names Z-A</button>
+            <button onClick={()=>this.props.usersSort('mostStories')}>Most Stories</button>
+            <button onClick={()=>this.props.usersSort('leastStories')}>Least Stories</button>
+          </div>
 
-        <div>
-          <button onClick={()=>this.props.usersSort('alphabetically')}>Names A-Z</button>
-          <button onClick={()=>this.props.usersSort('reverseAlphabetically')}>Names Z-A</button>
-          <button onClick={()=>this.props.usersSort('mostStories')}>Most Stories</button>
-          <button onClick={()=>this.props.usersSort('leastStories')}>Least Stories</button>
+          <input type='text'
+          name='searchInput'
+          placeholder='Search Users & Titles'
+          value={this.state.searchInput}
+          onChange={this.handleInput} />
+
+          <div className='user-index-card-container'>
+            {this.renderUsers()}
+          </div>
+
+          <img alt='forest' src='https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80' />
+
         </div>
+      )
+    } else { return <LoadingMedium /> }
 
-        <input type='text'
-        name='searchInput'
-        placeholder='Search Users & Titles'
-        value={this.state.searchInput}
-        onChange={this.handleInput} />
-
-        <div className='user-index-card-container'>
-          {this.renderUsers()}
-        </div>
-
-        <img alt='forest' src='https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80' />
-
-      </div>
-    )
   }
   // Photo Credit: Steven Kamenar | @skamenar
 

@@ -31,13 +31,3 @@ const PageNextBtn = (props) => {
 }
 
 export default PageNextBtn
-
-//   if (pageNum && nextPage) {
-//     return (
-//       <Link
-//       key={nextPage.id}
-//       to={`/stories/${this.story.id}/page/${nextPage.number}`}
-//       >Next Page</Link>
-//     )
-//   }
-// }

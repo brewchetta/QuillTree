@@ -79,6 +79,8 @@ export default class PageContainer extends React.Component {
             story={this.story}
             handleCreatePage={this.handleCreatePage}/>
 
+            <button onClick={() => this.props.fetchShiftPages(this.state.page, this.story, true)}>Delete</button>
+
           </div>
           <img alt={this.story.title} src={this.story.image} className='image-right' />
         </>
