@@ -9,6 +9,11 @@ const UserProfile = (props) =>  {
   const userId = parseInt(props.match.params.userId)
   const user = props.users.find(user => user.id === userId)
 
+  // For pushing history in UserCreateNewStory
+  const pushHistory = (newURL) => {
+    props.history.push(newURL)
+  }
+
   if (user) {
     return (
       <>
@@ -17,6 +22,7 @@ const UserProfile = (props) =>  {
           <p>{user.bio}</p>
           <UserCreateNewStory
           fetchCreateStory={props.fetchCreateStory}
+          pushHistory={pushHistory}
           user={user} />
           <h3>Stories</h3>
           <div className='user-story-container'>

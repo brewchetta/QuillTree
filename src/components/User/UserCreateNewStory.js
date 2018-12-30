@@ -18,7 +18,10 @@ export default class UserCreateNewStory extends React.Component {
     const title = this.state.title
     const newStory = {...this.state, user_id: this.props.user.id}
     if (title.length) {
-      this.props.fetchCreateStory(newStory)
+      this.props.fetchCreateStory(newStory).then(newStory => {
+        console.log(newStory)
+        this.props.pushHistory(`/stories/${newStory.id}`)
+      })
     }
   }
 

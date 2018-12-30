@@ -95,7 +95,9 @@ class App extends Component {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify({story: story})
-    }).then(r => console.log(r)).then(r => this.fetchAllStories())
+    })
+    .then(r => r.json())
+    .then(r => { this.fetchAllStories(); return r })
   }
 
   fetchPage = (pageID) => {
