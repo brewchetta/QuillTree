@@ -47,6 +47,11 @@ export default class PageContainer extends React.Component {
     this.props.fetchCreatePage(event).then(page => this.props.history.push(`/stories/${this.storyId}/page/${page.number}`))
   }
 
+  handleDelete = () => {
+    this.props.history.push(`/stories/${this.storyId}`)
+    this.props.fetchDeletePage(this.state.page.id)
+  }
+
   // Main render
   render() {
     // Redefine user and story
@@ -67,7 +72,10 @@ export default class PageContainer extends React.Component {
 
             { this.state.edit ? <textarea value={this.state.page.content} onChange={this.handleChange}/> : <p>Content: {this.state.page.content}</p> }
 
-            { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> : <button onClick={this.handleClickEdit}>Edit</button> }
+            { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> : <button onClick={this.handleClickEdit}>Edit Page</button> }
+            <br/>
+
+            <button onClick={this.handleDelete}>Delete Page</button>
             <br/>
 
             <PagePreviousBtn

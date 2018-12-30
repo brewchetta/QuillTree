@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
-
-// Import components
+// Import Main Components
 import NavBar from './components/NavBar'
 import Home from './components/Home'
 import Footer from './components/Footer.js'
@@ -122,8 +121,10 @@ class App extends Component {
     }).then(r=>r.json())
   }
 
-  fetchDeletePage = (page) => {
-    return fetch(this.API + `/pages/${page.id}`, { method: 'DELETE' }).then(r => r.json())
+  fetchDeletePage = (pageId) => {
+    console.log(pageId)
+    return fetch(this.API + `/pages/${pageId}`, { method: 'DELETE' }).then(r => r.json())
+    .then(deletedPage => {this.fetchAllStories(); return deletedPage})
   }
 
   // Render routes
