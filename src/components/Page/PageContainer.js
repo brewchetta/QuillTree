@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import LoadingMedium from '../LoadingMedium'
 
 export default class PageContainer extends React.Component {
 
@@ -70,24 +71,30 @@ export default class PageContainer extends React.Component {
 
   // Main render
   render() {
+    console.log(this.props) // REMOVE THIS
     // Redefine user and story
     this.story = this.props.stories.find(story => story.id === this.storyId)
     this.user = this.story ? this.props.users.find(user => user.id === this.story.user_id) : {}
     this.handleFetchPage()
-    return (
-      <div>
-        {this.user ? <p>{this.user.name}</p> : <p>Loading</p> }
-        {this.story ? <p>{this.story.title}</p> : <p>Loading</p> }
-        <p>Page #{this.state.page.number}</p>
-        <p>Image: {this.state.page.image}</p>
+    if (this.state.page.id) {
+      return (
+        <div>
+          {this.user ? <p>{this.user.name}</p> : <p>Loading</p> }
+          {this.story ? <p>{this.story.title}</p> : <p>Loading</p> }
+          <p>Page #{this.state.page.number}</p>
+          <p>Image: {this.state.page.image}</p>
 
-        { this.state.edit ? <textarea value={this.state.page.content} onChange={this.handleChange}/> : <p>Content: {this.state.page.content}</p> }
+          { this.state.edit ? <textarea value={this.state.page.content} onChange={this.handleChange}/> : <p>Content: {this.state.page.content}</p> }
 
-        { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> : <button onClick={this.handleClickEdit}>Edit</button> }
-        <br/>
+          { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> : <button onClick={this.handleClickEdit}>Edit</button> }
+          <br/>
 
-        {this.renderNextPage()}
-      </div>
-    )
+          {this.renderNextPage()}
+        </div>
+      )
+    } else {
+      return <LoadingMedium />
+    }
+
   }
 }
