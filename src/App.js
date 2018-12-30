@@ -23,7 +23,7 @@ class App extends Component {
   // Set API address
   // TODO: change back to localhost at some point so it'll stop broadcasting across network
   // IMPORTANT: Be certain to change this in StoryContainer as well
-  API = 'http://192.168.1.6:3000/api/v1'
+  API = 'http://192.168.1.2:3000/api/v1'
 
   state = {
     users: [],

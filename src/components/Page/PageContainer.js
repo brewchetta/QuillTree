@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default class PageContainer extends React.Component {
 
@@ -35,7 +36,28 @@ export default class PageContainer extends React.Component {
   // Changes page's content
   handleChange = (event) => {
     this.setState({ page: {...this.state.page, content: event.target.value }})
-    console.log(this.state.page.content)
+  }
+
+  // Creates new page upon clicking next page if it doesn't not exist
+  handleCreatePage = (event) => {
+    this.props.fetchCreatePage(event).then(page => this.props.history.push(`${this.props.match.url}/pages/${page.id}`))
+  }
+
+  // Determines whether there's another page and renders if able
+  renderNextPage = () => {
+    const pageNum = this.state.page.number
+    const nextPage = pageNum ? this.story.pages.find(page => page.number === pageNum + 1) : null
+    if (pageNum && nextPage) {
+      console.log('Next page exists')
+      return (
+        <Link
+        key={nextPage.id}
+        to={`/stories/${this.story.id}/page/${nextPage.id}`}
+        >Next Page</Link>
+      )
+    } else if (this.state.page.number) {
+      console.log('Page exists, next does not')
+    }
   }
 
   // Main render
@@ -54,6 +76,8 @@ export default class PageContainer extends React.Component {
         { this.state.edit ? <textarea value={this.state.page.content} onChange={this.handleChange}/> : <p>Content: {this.state.page.content}</p> }
 
         { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> : <button onClick={this.handleClickEdit}>Edit</button> }
+
+        {this.renderNextPage()}
       </div>
     )
   }

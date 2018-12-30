@@ -1,5 +1,4 @@
 import React from 'react'
-import LoadingMedium from '../LoadingMedium'
 
 export default class UserCreate extends React.Component {
 
@@ -60,8 +59,6 @@ export default class UserCreate extends React.Component {
           onChange={this.handleInput}
           value={this.state.bio} />
           <br/>
-
-          <LoadingMedium />
 
           <button onClick={this.handleSubmit}>Submit</button>
 
