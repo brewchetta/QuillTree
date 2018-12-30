@@ -4,7 +4,6 @@ const LoadingMedium = () => {
   return (
     <div className='loading-container'>
       <div className='loading-sun'></div>
-      Loading...
     </div>
   )
 }
