@@ -1,23 +1,27 @@
 import React from 'react'
 
-const LoginBar = (props) => {
+export default class LoginBar extends React.Component {
 
-  const currentUser = props.currentUser
-  const users = props.users
+  currentUser = this.props.currentUser
+  users = this.props.users
 
-  if (currentUser) {
-    return (
-      <div className='navbar-right'>
+  state = {
+    loginPopup: false
+  }
+
+  render() {
+    if (this.currentUser) {
+      return (
+        <div className='navbar-right'>
         <p>I AM LINK TO USER PROFILE</p>
-      </div>
-    )
-  } else {
-    return (
-      <div className='navbar-right'>
+        </div>
+      )
+    } else {
+      return (
+        <div className='navbar-right'>
         <p>I AM LINK LOGIN / SIGNUP</p>
-      </div>
-    )
+        </div>
+      )
+    }
   }
 }
-
-export default LoginBar
