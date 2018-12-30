@@ -180,7 +180,7 @@ background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 25
   padding-top: 10vh;
   padding-left: 1em;
   padding-bottom: 15vh;
-  height: 90vh;
+  min-height: 90vh;
   color: white;
 }
 

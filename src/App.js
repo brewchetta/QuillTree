@@ -90,6 +90,14 @@ class App extends Component {
     return fetch(this.API + '/stories').then(r=>r.json()).then(storyData=> this.setAppState({ stories: storyData }))
   }
 
+  fetchCreateStory = (user) => {
+    return fetch(this.API + 'stories', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({story: {user_id: user.id, content: '', image: '', pages: [] }})
+    })
+  }
+
   fetchPage = (pageID) => {
     return fetch(this.API + `/pages/${pageID}`)
     .then(r=>r.json())
