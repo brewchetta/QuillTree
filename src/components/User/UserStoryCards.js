@@ -7,11 +7,12 @@ const UserStoryCards = (props) => {
   return (
     props.stories.map(story => {
       return (
-        <div key={story.id}>
-          <Link
-          to={`/stories/${story.id}`}
-          >{story.title}</Link>
-        </div>
+        <Link key={story.id} to={`/stories/${story.id}`} className='user-story-card'>
+          <h4>{story.title}</h4>
+          <div className='user-story-card-image'>
+            <img alt='story.id' src={story.image} />
+          </div>
+        </Link>
       )
     })
   )
