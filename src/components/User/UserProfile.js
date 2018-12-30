@@ -1,6 +1,7 @@
 import React from 'react'
 import UserStoryCards from './UserStoryCards'
 import LoadingMedium from '../LoadingMedium'
+import UserCreateNewStory from './UserCreateNewStory'
 
 const UserProfile = (props) =>  {
 
@@ -15,6 +16,7 @@ const UserProfile = (props) =>  {
           <h2>{user.name}</h2>
           <p>{user.bio}</p>
           <h3>Stories</h3>
+          <UserCreateNewStory user={user} />
           <div className='user-story-container'>
             <UserStoryCards
             stories={user.stories}
