@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import LoadingMedium from '../LoadingMedium'
+import PagePreviousBtn from './PagePreviousBtn'
+import PageNextBtn from './PageNextBtn'
 
 export default class PageContainer extends React.Component {
 
@@ -41,19 +43,7 @@ export default class PageContainer extends React.Component {
     this.setState({ page: {...this.state.page, content: event.target.value }})
   }
 
-  // Determines whether there's a previous page and renders link
-  renderPrevPage = () => {
-    const pageNum = this.state.page.number
-    const previousPage = pageNum ? this.story.pages.find(page => page.number === pageNum - 1 ) : null
-    if (pageNum && previousPage) {
-      return (
-        <Link
-        key={previousPage.id}
-        to={`/stories/${this.story.id}/page/${previousPage.number}`}
-        >Previous Page</Link>
-      )
-    }
-  }
+
 
   // Determines whether there's another page and renders if able
   renderNextPage = () => {
@@ -114,7 +104,7 @@ export default class PageContainer extends React.Component {
             { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> : <button onClick={this.handleClickEdit}>Edit</button> }
             <br/>
 
-            {this.renderPrevPage()}
+            <PagePreviousBtn page={this.state.page} story={this.story} />
             {this.renderNextPage()}
           </div>
           <img alt={this.story.title} src={this.story.image} className='image-right' />
