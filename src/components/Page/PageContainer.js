@@ -32,7 +32,7 @@ export default class PageContainer extends React.Component {
 
   // Sends update request and changes back to read mode
   handleClickSave = () => {
-    this.props.fetchUpdatePage(this.state.page).then(r => console.log(r))
+    this.props.fetchUpdatePage(this.state.page)
     this.setState({ edit: false })
   }
 
@@ -71,7 +71,6 @@ export default class PageContainer extends React.Component {
 
   // Main render
   render() {
-    console.log(this.props) // REMOVE THIS
     // Redefine user and story
     this.story = this.props.stories.find(story => story.id === this.storyId)
     this.user = this.story ? this.props.users.find(user => user.id === this.story.user_id) : {}
@@ -95,7 +94,7 @@ export default class PageContainer extends React.Component {
 
             {this.renderNextPage()}
           </div>
-          <img alt='story-image' src={this.story.image} className='image-right' />
+          <img alt={this.story.title} src={this.story.image} className='image-right' />
         </>
       )
     } else {
