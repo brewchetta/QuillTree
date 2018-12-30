@@ -41,10 +41,32 @@ export default class PageContainer extends React.Component {
     this.setState({ page: {...this.state.page, content: event.target.value }})
   }
 
+  // Determines whether there's a previous page and renders link
+  renderPrevPage = () => {
+    const pageNum = this.state.page.number
+    const previousPage = pageNum ? this.story.pages.find(page => page.number === pageNum - 1 ) : null
+    if (pageNum && previousPage) {
+      return (
+        <Link
+        key={previousPage.id}
+        to={`/stories/${this.story.id}/page/${previousPage.number}`}
+        >Previous Page</Link>
+      )
+    }
+  }
+
   // Determines whether there's another page and renders if able
   renderNextPage = () => {
     const pageNum = this.state.page.number
     const nextPage = pageNum ? this.story.pages.find(page => page.number === pageNum + 1) : null
+    if (pageNum && nextPage) {
+      return (
+        <Link
+        key={nextPage.id}
+        to={`/stories/${this.story.id}/page/${nextPage.number}`}
+        >Next Page</Link>
+      )
+    }
     if (pageNum && nextPage) {
       return (
         <Link
@@ -92,6 +114,7 @@ export default class PageContainer extends React.Component {
             { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> : <button onClick={this.handleClickEdit}>Edit</button> }
             <br/>
 
+            {this.renderPrevPage()}
             {this.renderNextPage()}
           </div>
           <img alt={this.story.title} src={this.story.image} className='image-right' />
