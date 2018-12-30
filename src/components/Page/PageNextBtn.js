@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const PageNextBtn = (props) => {
 
   const pageNum = props.page.number
-  const nextPage = pageNum ? props.story.pages.find(page => page.number === pageNum - 1 ) : null
+  const nextPage = pageNum ? props.story.pages.find(page => page.number === pageNum + 1 ) : null
 
   if (pageNum && nextPage) {
     return (
@@ -14,7 +14,30 @@ const PageNextBtn = (props) => {
       to={`/stories/${props.story.id}/page/${nextPage.number}`}
       >Next Page</Link>
     )
-  } else { return null }
+  }
+
+  else if (props.page.number) {
+    return (
+      <Link
+      key={pageNum + 1}
+      to={`/stories/${props.story.id}/page/${props.page.number}`}
+      onClick={props.handleCreatePage}
+      data-storyid={props.story.id}
+      >New Page</Link>
+    )
+  }
+
+  else { return null}
 }
 
 export default PageNextBtn
+
+//   if (pageNum && nextPage) {
+//     return (
+//       <Link
+//       key={nextPage.id}
+//       to={`/stories/${this.story.id}/page/${nextPage.number}`}
+//       >Next Page</Link>
+//     )
+//   }
+// }

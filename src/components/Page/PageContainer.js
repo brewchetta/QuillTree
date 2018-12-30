@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import LoadingMedium from '../LoadingMedium'
 import PagePreviousBtn from './PagePreviousBtn'
 import PageNextBtn from './PageNextBtn'
@@ -43,39 +42,6 @@ export default class PageContainer extends React.Component {
     this.setState({ page: {...this.state.page, content: event.target.value }})
   }
 
-
-
-  // Determines whether there's another page and renders if able
-  renderNextPage = () => {
-    const pageNum = this.state.page.number
-    const nextPage = pageNum ? this.story.pages.find(page => page.number === pageNum + 1) : null
-    if (pageNum && nextPage) {
-      return (
-        <Link
-        key={nextPage.id}
-        to={`/stories/${this.story.id}/page/${nextPage.number}`}
-        >Next Page</Link>
-      )
-    }
-    if (pageNum && nextPage) {
-      return (
-        <Link
-        key={nextPage.id}
-        to={`/stories/${this.story.id}/page/${nextPage.number}`}
-        >Next Page</Link>
-      )
-    } else if (this.state.page.number) {
-      return (
-        <Link
-        key={pageNum + 1}
-        to={`/stories/${this.story.id}/page/${this.state.page.number}`}
-        onClick={this.handleCreatePage}
-        data-storyid={this.storyId}
-        >New Page</Link>
-      )
-    }
-  }
-
   // Creates new page upon clicking next page if it doesn't not exist
   handleCreatePage = (event) => {
     this.props.fetchCreatePage(event).then(page => this.props.history.push(`/stories/${this.storyId}/page/${page.number}`))
@@ -104,8 +70,15 @@ export default class PageContainer extends React.Component {
             { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> : <button onClick={this.handleClickEdit}>Edit</button> }
             <br/>
 
-            <PagePreviousBtn page={this.state.page} story={this.story} />
-            {this.renderNextPage()}
+            <PagePreviousBtn
+            page={this.state.page}
+            story={this.story} />
+
+            <PageNextBtn
+            page={this.state.page}
+            story={this.story}
+            handleCreatePage={this.handleCreatePage}/>
+
           </div>
           <img alt={this.story.title} src={this.story.image} className='image-right' />
         </>
