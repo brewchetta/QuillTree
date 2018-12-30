@@ -4,26 +4,46 @@ body {
   padding: 0;
   margin: 0;
   text-align: center;
+  overflow-x: hidden;
 }
 
 /* Navbar */
 .navbar {
   position: fixed;
   top: 0;
+  left: 0;
   background: black;
   width: 100%;
+  z-index: 2;
 }
 
-.navbar > div {
+.navbar-left {
+  width: 50%;
+  float: left;
+}
+
+.navbar-left > div {
   float: left;
   display: inline;
   padding-bottom: 0.5em;
 }
 
-.navbar > div > a {
+.navbar-left > div > a {
   text-decoration: none;
   color: #fffae6;
   margin-right: 1em;
+}
+
+.navbar-right {
+  display: inline;
+  float: left;
+  width: 49%;
+  text-align: right;
+  margin: 0;
+}
+
+.navbar-right > p {
+  margin: 0;
 }
 /*  */
 

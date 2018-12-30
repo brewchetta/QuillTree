@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
-// Import Main Components
+// Main Components
 import NavBar from './components/NavBar'
 import Home from './components/Home'
 import Footer from './components/Footer.js'
@@ -26,7 +26,7 @@ class App extends Component {
   state = {
     users: [],
     stories: [],
-    currentUser: {}
+    currentUser: null
   }
 
   // Initializers
@@ -132,7 +132,9 @@ class App extends Component {
     return (
       <Router>
         <>
-          <NavBar />
+          <NavBar
+          currentUser={this.state.currentUser}
+          users={this.state.users} />
 
           <Route
           path='/'
