@@ -15,7 +15,9 @@ const UserProfile = (props) =>  {
         <div className='user-profile'>
           <h2>{user.name}</h2>
           <p>{user.bio}</p>
-          <UserCreateNewStory user={user} />
+          <UserCreateNewStory
+          fetchCreateStory={props.fetchCreateStory}
+          user={user} />
           <h3>Stories</h3>
           <div className='user-story-container'>
             <UserStoryCards

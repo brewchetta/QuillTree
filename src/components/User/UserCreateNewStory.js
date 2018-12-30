@@ -13,13 +13,18 @@ export default class UserCreateNewStory extends React.Component {
   }
 
   handleSubmit = (event) => {
+    console.log('submitted')
     event.preventDefault()
-    this.props.fetchCreateStory(this.props.user).then(response => console.log(response))
+    const title = this.state.title
+    const newStory = {...this.state, user_id: this.props.user.id}
+    if (title.length) {
+      this.props.fetchCreateStory(newStory)
+    }
   }
 
   render() {
     return (
-      <form onSubmit={this.createStory}>
+      <form onSubmit={this.handleSubmit}>
         <h3>Start New Story</h3>
 
         <label>Title: </label>
@@ -48,7 +53,9 @@ export default class UserCreateNewStory extends React.Component {
         onChange={this.handleChange} />
         <br/>
         <br/>
-        
+
+        <button onClick={this.handleSubmit}>Create</button>
+
       </form>
     )
   }

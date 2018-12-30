@@ -90,12 +90,12 @@ class App extends Component {
     return fetch(this.API + '/stories').then(r=>r.json()).then(storyData=> this.setAppState({ stories: storyData }))
   }
 
-  fetchCreateStory = (user) => {
-    return fetch(this.API + 'stories', {
+  fetchCreateStory = (story) => {
+    return fetch(this.API + '/stories', {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({story: {user_id: user.id, content: '', image: '', pages: [] }})
-    })
+      body: JSON.stringify({story: story})
+    }).then(r => console.log(r)).then(r => this.fetchAllStories())
   }
 
   fetchPage = (pageID) => {
@@ -159,7 +159,8 @@ class App extends Component {
           path='/users/:userId'
           exact
           render={props => <UserProfile {...props}
-          users={this.state.users} />}
+          users={this.state.users}
+          fetchCreateStory={this.fetchCreateStory} />}
           />
 
           <Route
