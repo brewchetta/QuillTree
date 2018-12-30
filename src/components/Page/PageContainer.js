@@ -55,7 +55,7 @@ export default class PageContainer extends React.Component {
       return (
         <Link
         key={pageNum + 1}
-        to={`/stories/${this.story.id}`}
+        to={`/stories/${this.story.id}/page/${this.state.page.number}`}
         onClick={this.handleCreatePage}
         data-storyid={this.storyId}
         >New Page</Link>
@@ -65,7 +65,7 @@ export default class PageContainer extends React.Component {
 
   // Creates new page upon clicking next page if it doesn't not exist
   handleCreatePage = (event) => {
-    this.props.fetchCreatePage(event).then(page => console.log(page))
+    this.props.fetchCreatePage(event).then(page => this.props.history.push(`/stories/${this.storyId}/page/${page.number}`))
   }
 
   // Main render

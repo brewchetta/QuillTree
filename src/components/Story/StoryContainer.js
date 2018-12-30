@@ -9,7 +9,7 @@ const StoryContainer = (props) => {
   const user = story ? props.users.find(user => user.id === story.user_id) : {}
 
   const handleCreatePage = (event) => {
-    props.fetchCreatePage(event).then(page => props.history.push(`${props.match.url}/pages/${page.id}`))
+    props.fetchCreatePage(event).then(page => props.history.push(`${props.match.url}/pages/${page.number}`))
   }
 
   // Renders either a link to start the story or a dropdown for pages

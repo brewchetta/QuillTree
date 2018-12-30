@@ -102,7 +102,7 @@ class App extends Component {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify({page: {story_id: storyID, content: '', image: ''}})
-    }).then(r=>r.json()).then(page=>{ this.fetchAllStories(); return page })
+    }).then(r=>r.json()).then(page=>{return this.fetchAllStories().then(r => page)})
   }
 
   fetchUpdatePage = (page) => {
