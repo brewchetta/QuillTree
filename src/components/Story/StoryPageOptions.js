@@ -14,12 +14,12 @@ const StoryPageOptions = (props) => {
 
   return (
     <>
-    <br/>
-    <p>Select page: </p>
-    <select onChange={props.handlePageSelect}>
-      <option value=''></option>
-      {renderPageOptions()}
-    </select>
+      <br/>
+      <p>Select page: </p>
+      <select onChange={props.handlePageSelect}>
+        <option value=''></option>
+        {renderPageOptions()}
+      </select>
     </>
   )
 
