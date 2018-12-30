@@ -123,7 +123,7 @@ class App extends Component {
   }
 
   fetchDeletePage = (page) => {
-    return fetch(this.API + `/pages/${page.id}`, { method: 'DELETE' }).then(r => this.fetchShiftPages(page, true))
+    return fetch(this.API + `/pages/${page.id}`, { method: 'DELETE' }).then(r => r.json())
   }
 
   // Render routes
@@ -190,7 +190,7 @@ class App extends Component {
           fetchPage={this.fetchPage}
           fetchUpdatePage={this.fetchUpdatePage}
           fetchCreatePage={this.fetchCreatePage}
-          fetchShiftPages={this.fetchShiftPages}  />}
+          fetchDeletePage={this.fetchDeletePage}  />}
           />
 
           <Footer />
