@@ -16,8 +16,10 @@ export default class PageContainer extends React.Component {
 
   // Fetch page if it hasn't been loaded yet
   handleFetchPage = () => {
-    if (this.story && this.user && this.state.page.id !== parseInt(this.props.match.params.pageId)) {
-      this.props.fetchPage(this.props.match.params.pageId)
+    const paramsPageNum = parseInt(this.props.match.params.pageNum)
+    if (this.story && this.user && this.state.page.number !== paramsPageNum) {
+      const pageId = this.story.pages.find(page => page.number === paramsPageNum).id
+      this.props.fetchPage(pageId)
         .then(page => this.setState({ page: page, content: page.content }))
     }
   }
@@ -38,26 +40,32 @@ export default class PageContainer extends React.Component {
     this.setState({ page: {...this.state.page, content: event.target.value }})
   }
 
-  // Creates new page upon clicking next page if it doesn't not exist
-  handleCreatePage = (event) => {
-    this.props.fetchCreatePage(event).then(page => this.props.history.push(`${this.props.match.url}/pages/${page.id}`))
-  }
-
   // Determines whether there's another page and renders if able
   renderNextPage = () => {
     const pageNum = this.state.page.number
     const nextPage = pageNum ? this.story.pages.find(page => page.number === pageNum + 1) : null
     if (pageNum && nextPage) {
-      console.log('Next page exists')
       return (
         <Link
         key={nextPage.id}
-        to={`/stories/${this.story.id}/page/${nextPage.id}`}
+        to={`/stories/${this.story.id}/page/${nextPage.number}`}
         >Next Page</Link>
       )
     } else if (this.state.page.number) {
-      console.log('Page exists, next does not')
+      return (
+        <Link
+        key={pageNum + 1}
+        to={`/stories/${this.story.id}`}
+        onClick={this.handleCreatePage}
+        data-storyid={this.storyId}
+        >New Page</Link>
+      )
     }
+  }
+
+  // Creates new page upon clicking next page if it doesn't not exist
+  handleCreatePage = (event) => {
+    this.props.fetchCreatePage(event).then(page => console.log(page))
   }
 
   // Main render
@@ -76,6 +84,7 @@ export default class PageContainer extends React.Component {
         { this.state.edit ? <textarea value={this.state.page.content} onChange={this.handleChange}/> : <p>Content: {this.state.page.content}</p> }
 
         { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> : <button onClick={this.handleClickEdit}>Edit</button> }
+        <br/>
 
         {this.renderNextPage()}
       </div>

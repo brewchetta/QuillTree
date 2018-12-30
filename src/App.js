@@ -102,7 +102,7 @@ class App extends Component {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify({page: {story_id: storyID, content: '', image: ''}})
-    }).then(r=>r.json())
+    }).then(r=>r.json()).then(page=>{ this.fetchAllStories(); return page })
   }
 
   fetchUpdatePage = (page) => {
@@ -168,13 +168,14 @@ class App extends Component {
           />
 
           <Route
-          path='/stories/:storyId/page/:pageId'
+          path='/stories/:storyId/page/:pageNum'
           exact
           render={props => <PageContainer {...props}
           users={this.state.users}
           stories={this.state.stories}
           fetchPage={this.fetchPage}
-          fetchUpdatePage={this.fetchUpdatePage}  />}
+          fetchUpdatePage={this.fetchUpdatePage}
+          fetchCreatePage={this.fetchCreatePage}  />}
           />
 
           <Footer />

@@ -7,7 +7,7 @@ const PageCards = (props) => {
     return props.pages.map(page => {
       return (
         <Link key={page.id}
-          to={`/stories/${props.story.id}/page/${page.id}`}
+          to={`/stories/${props.story.id}/page/${page.number}`}
           >{page.number}</Link>
       )
     })
