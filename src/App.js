@@ -37,6 +37,7 @@ class App extends Component {
   //State setter functions
   setAppState = (object) => { this.setState(object, this.logState) }
 
+  // TODO PUT THIS IN ITS OWN COMPONENT
   // users sorter
   usersSort = (sortType) => {
     return (
@@ -164,7 +165,8 @@ class App extends Component {
           users={this.state.users}
           fetchAllUsers={this.fetchAllUsers}
           API={this.API}
-          currentUser={this.state.currentUser} /> }
+          currentUser={this.state.currentUser}
+          setAppState={this.setAppState} /> }
           />
 
           <Route

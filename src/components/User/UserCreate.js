@@ -19,8 +19,9 @@ export default class UserCreate extends React.Component {
     event.preventDefault()
     console.log('-----Creating-----')
     this.fetchUserSubmit(this.state)
-    .then(this.props.fetchAllUsers)
-    .then(() => this.props.history.push('/users'))
+    .then(newUser => { this.props.setAppState({currentUser: newUser}); return newUser })
+    .then(newUser => this.props.history.push(`/users/${newUser.id}`))
+    .then(() => this.props.fetchAllUsers())
     .catch(response=> console.log(response))
   }
 
@@ -32,7 +33,7 @@ export default class UserCreate extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({user: inputObject})
-    })
+    }).then(r=>r.json())
   }
 
   // Main render
