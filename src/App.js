@@ -201,7 +201,8 @@ class App extends Component {
           fetchPage={this.fetchPage}
           fetchUpdatePage={this.fetchUpdatePage}
           fetchCreatePage={this.fetchCreatePage}
-          fetchDeletePage={this.fetchDeletePage}  />}
+          fetchDeletePage={this.fetchDeletePage}
+          currentUser={this.state.currentUser}  />}
           />
 
           <Footer />

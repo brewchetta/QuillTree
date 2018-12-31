@@ -16,7 +16,7 @@ const PageNextBtn = (props) => {
     )
   }
 
-  else if (props.page.number) {
+  else if (props.page.number && props.user === props.currentUser) {
     return (
       <Link
       key={pageNum + 1}

@@ -72,10 +72,11 @@ export default class PageContainer extends React.Component {
 
             { this.state.edit ? <textarea value={this.state.page.content} onChange={this.handleChange}/> : <p>Content: {this.state.page.content}</p> }
 
-            { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> : <button onClick={this.handleClickEdit}>Edit Page</button> }
+            { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> :
+             this.user === this.props.currentUser ? <button onClick={this.handleClickEdit}>Edit Page</button> : null }
             <br/>
 
-            <button onClick={this.handleDelete}>Delete Page</button>
+            {this.user === this.props.currentUser ? <button onClick={this.handleDelete}>Delete Page</button> : null }
             <br/>
 
             <PagePreviousBtn
@@ -85,7 +86,9 @@ export default class PageContainer extends React.Component {
             <PageNextBtn
             page={this.state.page}
             story={this.story}
-            handleCreatePage={this.handleCreatePage}/>
+            handleCreatePage={this.handleCreatePage}
+            currentUser={this.props.currentUser}
+            user={this.user} />
 
           </div>
           <img alt={this.story.title} src={this.story.image} className='image-right' />
