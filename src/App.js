@@ -181,7 +181,8 @@ class App extends Component {
           render={props => <StoryContainer {...props}
           users={this.state.users}
           stories={this.state.stories}
-          fetchCreatePage={this.fetchCreatePage} />}
+          fetchCreatePage={this.fetchCreatePage}
+          currentUser={this.state.currentUser} />}
           />
 
           <Route
