@@ -45,6 +45,17 @@ body {
 .navbar-right > p {
   margin: 0;
 }
+
+.login-popup {
+  z-index: 3;
+  position: fixed;
+  top: 1.5em;
+  right: 0;
+  background: black;
+  height: 2em;
+  padding: 0.2em;
+  border-radius: 0 0 0 10px;
+}
 /*  */
 
 /* Loading Images */
