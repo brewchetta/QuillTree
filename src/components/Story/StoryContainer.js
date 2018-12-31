@@ -35,7 +35,8 @@ const StoryContainer = (props) => {
       <>
       <img src={story.image} alt='' className='image-right' />
       <div className='image-right-text'>
-        <p>{story.title}</p><p className='edit-button'>✎</p>
+        <p>{story.title}</p>
+        <p className='edit-button'>✎</p>
         <p>by {user.name}</p>
         <p>{story.description}</p>
         {renderPageStart()}
