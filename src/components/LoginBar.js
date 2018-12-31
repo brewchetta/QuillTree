@@ -26,6 +26,11 @@ export default class LoginBar extends React.Component {
     }
   }
 
+  // For signing out
+  handleLogout = () => {
+    this.props.handleUserSignIn(null)
+  }
+
   // For switching login state
   handleClickPopup = () => {
     this.setState({ loginPopup: !this.state.loginPopup })
@@ -51,9 +56,10 @@ export default class LoginBar extends React.Component {
     if (this.props.currentUser) {
       return (
         <div className='navbar-right'>
+          <p>
           <Link
           to={`/users/${this.props.currentUser.id}`}
-          className='navbar-link'>{this.props.currentUser.name}</Link>
+          className='navbar-link'>{this.props.currentUser.name}</Link> | <span className='login-button' onClick={this.handleLogout}>Log Out</span></p>
         </div>
       )
     } else {
