@@ -119,8 +119,16 @@ class App extends Component {
 
   fetchDeleteStory = (storyId) => {
     return fetch(this.API + `/stories/${storyId}`, { method: 'DELETE' })
-    .then(this.fetchAllStories)
-    .then(this.fetchAllUsers)
+    .then(r => r.json())
+    .then(deletedStory => {
+      const foundStory = this.state.stories.find(story => story.id === deletedStory.id)
+      const storyIndex = this.state.stories.indexOf(foundStory)
+      const newStories = [...this.state.stories]
+      newStories.splice(storyIndex, 1)
+      console.log(newStories)
+      this.setState({ stories: newStories })
+    })
+    .then(this.updateCurrentUser)
   }
 
   fetchPage = (pageID) => {
