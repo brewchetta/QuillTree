@@ -141,7 +141,15 @@ class App extends Component {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify({page: {story_id: storyID, content: '', image: ''}})
-    }).then(r=>r.json()).then(page=>{return this.fetchAllStories().then(r => page)})
+    })
+    .then(r=>r.json())
+    .then(page=>{
+      const newStories = [...this.state.stories.map(story => {
+        return story.id === page.story_id ? {...story, pages: [...story.pages, page]} : story
+      })]
+      this.setState({ stories: newStories })
+      return page
+    })
   }
 
   fetchUpdatePage = (page) => {
@@ -154,7 +162,14 @@ class App extends Component {
 
   fetchDeletePage = (pageId) => {
     return fetch(this.API + `/pages/${pageId}`, { method: 'DELETE' }).then(r => r.json())
-    .then(deletedPage => {this.fetchAllStories(); return deletedPage})
+    .then(deletedPage => {
+      const foundPage = this.state.stories.find(page => page.id === deletedPage.id)
+      const pageIndex = this.state.stories.indexOf(foundPage)
+      const newStories = [...this.state.stories]
+      newStories.splice(pageIndex, 1)
+      this.setState({ stories: newStories })
+      return deletedPage
+    })
   }
 
   // Handle user sign in attempts
