@@ -104,11 +104,6 @@ class App extends Component {
   }
 
   fetchDeleteStory = (storyId) => {
-    this.setState({
-      currentUser: {...this.state.currentUser,
-        stories: {...this.state.currentUser.stories.map(story => story.id === storyId ? null : story)}
-      }
-    })
     return fetch(this.API + `/stories/${storyId}`, { method: 'DELETE' })
     .then(this.fetchAllStories)
     .then(this.fetchAllUsers)
