@@ -23,7 +23,8 @@ const UserProfile = (props) =>  {
           <UserCreateNewStory
           fetchCreateStory={props.fetchCreateStory}
           pushHistory={pushHistory}
-          user={user} />
+          user={user}
+          currentUser={props.currentUser} />
           <h3>Stories</h3>
           <div className='user-story-container'>
             <UserStoryCards

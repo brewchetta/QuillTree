@@ -171,7 +171,8 @@ class App extends Component {
           exact
           render={props => <UserProfile {...props}
           users={this.state.users}
-          fetchCreateStory={this.fetchCreateStory} />}
+          fetchCreateStory={this.fetchCreateStory}
+          currentUser={this.state.currentUser} />}
           />
 
           <Route

@@ -37,37 +37,49 @@ export default class UserCreate extends React.Component {
 
   // Main render
   render() {
-    return (
-      <div>
+    if (this.props.currentUser) {
+      return (
+        <div>
         <form onSubmit={this.handleSubmit} className='image-right-text'>
 
-          <h3>Sign Up</h3>
+        <h3>Sign Up</h3>
 
-          <label name='name'>Name</label>
+        <label name='name'>Name</label>
 
-          <input type='text'
-          name='name'
-          onChange={this.handleInput}
-          value={this.state.name} />
-          <br/>
+        <input type='text'
+        name='name'
+        onChange={this.handleInput}
+        value={this.state.name} />
+        <br/>
 
-          <label name='bio'>Biography</label>
-          <br/>
+        <label name='bio'>Biography</label>
+        <br/>
 
-          <textarea
-          name='bio'
-          onChange={this.handleInput}
-          value={this.state.bio} />
-          <br/>
+        <textarea
+        name='bio'
+        onChange={this.handleInput}
+        value={this.state.bio} />
+        <br/>
 
-          <button onClick={this.handleSubmit}>Submit</button>
+        <button onClick={this.handleSubmit}>Submit</button>
 
         </form>
         <div className='image-right'>
           <img alt='scissors' src='https://images.unsplash.com/photo-1517419044068-b406d7e6972d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1537&q=80' />
         </div>
-      </div>
-    )
+        </div>
+      )
+    } else {
+      return (
+        <div className='image-right-text'>
+          <p>You're already sign in</p>
+          <p>Go write some stories!</p>
+          <div className='image-right'>
+          <img alt='scissors' src='https://images.unsplash.com/photo-1517419044068-b406d7e6972d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1537&q=80' />
+          </div>
+        </div>
+      )
+    }
   }
 
 // Photo credit: Gerrie van der Walt | @gitfo

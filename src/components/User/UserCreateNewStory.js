@@ -26,8 +26,9 @@ export default class UserCreateNewStory extends React.Component {
   }
 
   render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
+    if (this.props.currentUser === this.props.user) {
+      return (
+        <form onSubmit={this.handleSubmit}>
         <h3>Start New Story</h3>
 
         <label>Title: </label>
@@ -59,7 +60,8 @@ export default class UserCreateNewStory extends React.Component {
 
         <button onClick={this.handleSubmit}>Create</button>
 
-      </form>
-    )
+        </form>
+      )
+    } else { return null }
   }
 }

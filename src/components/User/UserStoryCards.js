@@ -9,9 +9,13 @@ const UserStoryCards = (props) => {
       return (
         <Link key={story.id} to={`/stories/${story.id}`} className='user-story-card'>
           <h4>{story.title}</h4>
-          <div className='user-story-card-image'>
-            <img alt='story.id' src={story.image} />
-          </div>
+          { story.image ?
+            <div className='user-story-card-image'>
+              <img alt='story.id' src={story.image} />
+            </div>
+            : null
+          }
+
         </Link>
       )
     })
