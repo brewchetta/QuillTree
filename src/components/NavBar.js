@@ -36,7 +36,8 @@ const NavBar = (props) => {
 
       <LoginBar
       currentUser={props.currentUser}
-      users={props.users} />
+      users={props.users}
+      handleUserSignIn={props.handleUserSignIn} />
     </div>
   )
 }

@@ -2,10 +2,6 @@ import React from 'react'
 
 export default class LoginBar extends React.Component {
 
-  // Set current users and such for ease of access
-  currentUser = this.props.currentUser
-  users = this.props.users
-
   state = {
     loginPopup: false,
     name: ''
@@ -16,11 +12,24 @@ export default class LoginBar extends React.Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
+  // For handling submit
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const foundUser = this.props.users.find(user => user.name === this.state.name)
+    console.log(foundUser)
+    if (foundUser) {
+      this.setState({ loginPopup: false, name: '' })
+      this.props.handleUserSignIn(foundUser)
+    } else {
+      alert('That username does not exist')
+    }
+  }
+
   // Determines whether the login popup is needed and then renders it
   renderPopup = () => {
-    if (!this.state.loginPopup) {
+    if (this.state.loginPopup) {
       return (
-        <form className='login-popup'>
+        <form className='login-popup' onSubmit={this.handleSubmit}>
           <label>Username: </label>
           <input type='text'
           name='name'

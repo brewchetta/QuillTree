@@ -127,6 +127,11 @@ class App extends Component {
     .then(deletedPage => {this.fetchAllStories(); return deletedPage})
   }
 
+  // Handle user sign in attempts
+  handleUserSignIn = (user) => {
+    this.setState({ currentUser: user })
+  }
+
   // Render routes
   render() {
     return (
@@ -134,7 +139,8 @@ class App extends Component {
         <>
           <NavBar
           currentUser={this.state.currentUser}
-          users={this.state.users} />
+          users={this.state.users}
+          handleUserSignIn={this.handleUserSignIn} />
 
           <Route
           path='/'
