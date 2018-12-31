@@ -8,7 +8,7 @@ class UserIndex extends React.Component {
     searchInput: ''
   }
 
-  // Renders all users
+  // Renders 12 users based on search input
   renderUsers = () => {
     const searchInput = this.state.searchInput.toLowerCase()
     if (this.props.users) {

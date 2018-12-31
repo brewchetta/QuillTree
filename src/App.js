@@ -253,7 +253,8 @@ class App extends Component {
           path='/stories'
           exact
           render={props => <StoryIndex {...props}
-          stories={this.state.stories} />}
+          stories={this.state.stories}
+          users={this.state.users} />}
           />
 
           <Route

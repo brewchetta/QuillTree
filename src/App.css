@@ -1,5 +1,5 @@
 body {
-  background: black;
+  background: #fffae6;
   color: white;
   padding: 0;
   margin: 0;
@@ -70,8 +70,8 @@ body {
 
 /* Loading Images */
 @keyframes loading-rotate {
-  from {transform: rotate(0deg); filter: invert(1)}
-  to {transform: rotate(360deg); filter: invert(1)}
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
 }
 
 .loading-container {
@@ -89,6 +89,24 @@ body {
   text-align: center;
   z-index: 1;
   animation: loading-rotate 2s infinite linear;
+}
+/*  */
+
+/* Edit Button */
+.edit-button {
+  font-size: 1.3em;
+  display: inline-block;
+  background: black;
+  color: white;
+  border-radius: 20px;
+  margin: 0;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  color: black;
+  background: white;
 }
 /*  */
 
@@ -240,7 +258,7 @@ background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 25
 
 .user-story-card {
   color: white;
-  text-decoration: underline;
+  text-decoration: overline;
 }
 
 .user-story-card-image {
@@ -256,11 +274,38 @@ background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 25
 }
 /*  */
 
-/* Story Container */
-.story-container {
-
+/* Story Index Cards */
+.story-index-story-container {
+  display: inline-block;
+  width: 20em;
+  margin: 1em;
+  padding: 0.5em;
+  border: solid black 2px;
+  border-radius: 2px;
+  text-decoration: none;
 }
 
+.story-index-story-card {
+  color: black;
+  text-decoration: overline;
+}
+
+.story-index-card-author {
+  color: black;
+  text-decoration: overline;
+}
+
+.story-index-card-image {
+  width: 20em;
+  height: 3em;
+  overflow: hidden;
+}
+
+.story-index-card-image > img {
+  position: relative;
+  top: -2em;
+  width: 30em;
+}
 /*  */
 
 /* Footer */

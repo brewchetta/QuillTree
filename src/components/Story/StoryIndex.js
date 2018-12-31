@@ -1,22 +1,72 @@
 import React from 'react'
-import StoryCards from './StoryCards'
+import StoryCard from './StoryCard'
 import LoadingMedium from '../LoadingMedium'
 
-const StoryIndex = (props) => {
+export default class StoryIndex extends React.Component {
 
-
-  if (props.stories.length) {
-    return (
-      <div className='image-right-text'>
-        <p>TODO: This should only display either the first X popular stories or else stories searched for</p>
-        <StoryCards stories={props.stories} />
-      </div>
-    )
-  } else {
-    return <LoadingMedium />
+  state = {
+    searchInput: ''
   }
 
+  // Renders 12 stories based on search input
+  renderStories = () => {
+    const searchInput = this.state.searchInput.toLowerCase()
+    if (this.props.stories) {
+      return this.props.stories
+      .map(story => {
+        return story.title.toLowerCase().includes(searchInput) ?
+        <StoryCard key={story.id}
+        user={this.props.users.find(user => user.id === story.user_id)} 
+        story={story} />
+        : null
+      })
+      .filter(story => story !== null)
+      .slice(0,12)
+    }
+  }
+
+  handleInput = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  render() {
+    if (this.props.stories.length) {
+      return (
+        <>
+        <div className='image-right-text' style={{ 'marginBottom': '3em' }}>
+          <div>
+            <button onClick={()=>this.props.storiesSort('alphabetically')}>Names A-Z</button>
+            <button onClick={()=>this.props.storiesSort('reverseAlphabetically')}>Names Z-A</button>
+            <button onClick={()=>this.props.storiesSort('mostPages')}>Most Pages</button>
+            <button onClick={()=>this.props.storiesSort('leastPages')}>Least Pages</button>
+
+            <br/>
+
+            <input type='text'
+            name='searchInput'
+            placeholder='Search Titles'
+            value={this.state.searchInput}
+            onChange={this.handleInput} />
+          </div>
+
+
+          <br/>
+
+          {this.renderStories()}
+        </div>
+
+        <img className='image-right'
+        alt='stories index'
+        src='https://images.unsplash.com/photo-1464263703464-63a9642fcab2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1468&q=80' />
+        </>
+      )
+    } else {
+      return <LoadingMedium />
+    }
+  }
+
+  // Photo credit: Annie Sprat | @anniespratt
 
 }
-
-export default StoryIndex
