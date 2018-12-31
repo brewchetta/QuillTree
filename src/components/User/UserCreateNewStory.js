@@ -13,7 +13,6 @@ export default class UserCreateNewStory extends React.Component {
   }
 
   handleSubmit = (event) => {
-    console.log('submitted')
     event.preventDefault()
     const title = this.state.title
     const newStory = {...this.state, user_id: this.props.user.id}

@@ -108,7 +108,7 @@ class App extends Component {
     })
     .then(r => r.json())
     .then(story => {
-      this.setState({ stories: [...this.state.stories, story] }, () => console.log(this.state.stories))
+      this.setState({ stories: [...this.state.stories, story] })
       return story
     })
     .then(story => {
@@ -125,7 +125,6 @@ class App extends Component {
       const storyIndex = this.state.stories.indexOf(foundStory)
       const newStories = [...this.state.stories]
       newStories.splice(storyIndex, 1)
-      console.log(newStories)
       this.setState({ stories: newStories })
     })
     .then(this.updateCurrentUser)
@@ -154,7 +153,6 @@ class App extends Component {
   }
 
   fetchDeletePage = (pageId) => {
-    console.log(pageId)
     return fetch(this.API + `/pages/${pageId}`, { method: 'DELETE' }).then(r => r.json())
     .then(deletedPage => {this.fetchAllStories(); return deletedPage})
   }
