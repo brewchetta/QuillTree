@@ -75,12 +75,13 @@ body {
 }
 
 .loading-container {
-  margin: auto;
-  margin-top: 3em;
-  width: 120px;
+  position: fixed;
+  top: 30vh;
+  width: 95vw;
 }
 
 .loading-sun {
+  margin: auto;
   background-image: url('./assets/quill-loading-sun.png');
   background-size: 100% 100%;
   height: 50px;
@@ -239,7 +240,7 @@ background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 25
 
 .user-story-card {
   color: white;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .user-story-card-image {

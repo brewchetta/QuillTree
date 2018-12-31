@@ -33,7 +33,7 @@ const StoryContainer = (props) => {
   if (story) {
     return (
       <>
-      <img src={story.image} alt={story.title} className='image-right' />
+      <img src={story.image} alt='' className='image-right' />
       <div className='image-right-text'>
         <p>{story.title}</p>
         <p>by {user.name}</p>

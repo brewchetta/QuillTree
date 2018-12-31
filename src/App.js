@@ -101,6 +101,10 @@ class App extends Component {
     .then(r => { this.fetchAllUsers(); return r })
   }
 
+  fetchDeleteStory = (storyId) => {
+    return fetch(this.API + `/stories/${storyId}`, { method: 'DELETE' }).then(r=>r.json())
+  }
+
   fetchPage = (pageID) => {
     return fetch(this.API + `/pages/${pageID}`)
     .then(r=>r.json())
@@ -176,6 +180,7 @@ class App extends Component {
           render={props => <UserProfile {...props}
           users={this.state.users}
           fetchCreateStory={this.fetchCreateStory}
+          fetchDeleteStory={this.fetchDeleteStory}
           currentUser={this.state.currentUser} />}
           />
 

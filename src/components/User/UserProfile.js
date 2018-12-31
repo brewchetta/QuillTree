@@ -29,7 +29,9 @@ const UserProfile = (props) =>  {
           <div className='user-story-container'>
             <UserStoryCards
             stories={user.stories}
-            userId={userId} />
+            userId={userId}
+            delete={props.currentUser === user}
+            fetchDeleteStory={props.fetchDeleteStory} />
           </div>
         </div>
         <div className='image-right'>
