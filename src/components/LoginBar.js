@@ -33,7 +33,8 @@ export default class LoginBar extends React.Component {
 
   // For switching login state
   handleClickPopup = () => {
-    this.setState({ loginPopup: !this.state.loginPopup })
+    this.setState({ loginPopup: !this.state.loginPopup }, ()=>this.refs.nameInput.focus())
+
   }
 
   // Determines whether the login popup is needed and then renders it
@@ -42,7 +43,9 @@ export default class LoginBar extends React.Component {
       return (
         <form className='login-popup' onSubmit={this.handleSubmit}>
           <label>Username: </label>
-          <input type='text'
+          <input
+          ref='nameInput'
+          type='text'
           name='name'
           value={this.state.name}
           onChange={this.handleChange}/>
