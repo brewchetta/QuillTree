@@ -160,15 +160,20 @@ class App extends Component {
     }).then(r=>r.json())
   }
 
-  fetchDeletePage = (pageId) => {
-    return fetch(this.API + `/pages/${pageId}`, { method: 'DELETE' }).then(r => r.json())
-    .then(deletedPage => {
-      const foundPage = this.state.stories.find(page => page.id === deletedPage.id)
-      const pageIndex = this.state.stories.indexOf(foundPage)
-      const newStories = [...this.state.stories]
-      newStories.splice(pageIndex, 1)
+  fetchDeletePage = (page) => {
+    return fetch(this.API + `/pages/${page.id}`, { method: 'DELETE' })
+    .then(r => r.json())
+    .then(deletedPage => this.fetchDeletePageCleanup(deletedPage))
+  }
+
+  fetchDeletePageCleanup = (deletedPage) => {
+    const foundStory = this.state.stories.find(story => story.id === deletedPage.story_id)
+    console.log('Story: ', foundStory)
+    this.fetchSingleStory(foundStory.id)
+    .then(fetchedStory => {
+      const newStories = this.state.stories.map(story => story.id === fetchedStory.id ? fetchedStory : story)
       this.setState({ stories: newStories })
-      return deletedPage
+
     })
   }
 

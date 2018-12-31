@@ -49,7 +49,7 @@ export default class PageContainer extends React.Component {
 
   handleDelete = () => {
     this.props.history.push(`/stories/${this.storyId}`)
-    this.props.fetchDeletePage(this.state.page.id)
+    this.props.fetchDeletePage(this.state.page)
   }
 
   // Main render
