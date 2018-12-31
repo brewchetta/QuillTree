@@ -85,11 +85,19 @@ class App extends Component {
 
   // Fetches from database
   fetchAllUsers = () => {
-    return fetch(this.API + '/users').then(r=>r.json()).then(userData => this.setState({ users: userData }, this.resetCurrentUser))
+    return fetch(this.API + '/users').then(r=>r.json()).then(userData => this.setState({ users: userData }))
+  }
+
+  fetchSingleUser = (id) => {
+    return fetch(this.API + `/users/${id}`).then(r=>r.json())
   }
 
   fetchAllStories = () => {
     return fetch(this.API + '/stories').then(r=>r.json()).then(storyData=> this.setAppState({ stories: storyData }))
+  }
+
+  fetchSingleStory = (id) => {
+    return fetch(this.API + `/stories/${id}`).then(r=>r.json())
   }
 
   fetchCreateStory = (story) => {
@@ -99,8 +107,14 @@ class App extends Component {
       body: JSON.stringify({story: story})
     })
     .then(r => r.json())
-    .then(r => { this.fetchAllStories(); return r })
-    .then(r => { this.fetchAllUsers(); return r })
+    .then(story => {
+      this.setState({ stories: [...this.state.stories, story] }, () => console.log(this.state.stories))
+      return story
+    })
+    .then(story => {
+      this.updateCurrentUser()
+      return story
+    })
   }
 
   fetchDeleteStory = (storyId) => {
@@ -142,14 +156,15 @@ class App extends Component {
     this.setState({ currentUser: user })
   }
 
-  // Reset user after users refetch
-  resetCurrentUser = () => {
-    console.log('Hey in the thing')
-    if (this.state.users.length && this.state.currentUser) {
-      const newCurrentUser = this.state.users.find(user => user.id === this.state.currentUser.id)
-      console.log(newCurrentUser)
-      this.setState({ currentUser: newCurrentUser })
-    }
+  // Update user after user is refetched
+  updateCurrentUser = () => {
+    this.fetchSingleUser(this.state.currentUser.id)
+    .then(fetchedUser => {
+      const newUsers = this.state.users.map(user => {
+        return user.id === fetchedUser.id ? fetchedUser : user
+      })
+      this.setState({ users: newUsers, currentUser: fetchedUser })
+    })
   }
 
   // Render routes
