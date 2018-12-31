@@ -16,21 +16,18 @@ const NavBar = (props) => {
         <NavLink
         to='/users'
         exact>Users</NavLink>
-        <br/>
         </div>
 
         <div>
         <NavLink
         to='/stories'
         exact>Stories</NavLink>
-        <br/>
         </div>
 
         <div>
         <NavLink
         to='/signup'
         exact>Sign Up</NavLink>
-        <br/>
         </div>
       </div>
 

@@ -46,8 +46,14 @@ body {
   margin: 0;
 }
 
+.navbar-link {
+  text-decoration: none;
+  color: #fffae6;
+}
+
 .login-button {
   cursor: pointer;
+  color: #fffae6;
 }
 
 .login-popup {

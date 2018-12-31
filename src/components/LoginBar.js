@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default class LoginBar extends React.Component {
 
@@ -41,24 +42,25 @@ export default class LoginBar extends React.Component {
           value={this.state.name}
           onChange={this.handleChange}/>
           <button>Log In</button>
-
         </form>
       )
     }
   }
 
   render() {
-    if (this.currentUser) {
+    if (this.props.currentUser) {
       return (
         <div className='navbar-right'>
-          <p>I AM LINK TO USER PROFILE</p>
+          <Link
+          to={`/users/${this.props.currentUser.id}`}
+          className='navbar-link'>{this.props.currentUser.name}</Link>
         </div>
       )
     } else {
       return (
         <div className='navbar-right'>
           <p>
-          <span className='login-button' onClick={this.handleClickPopup}>Login | </span><span className='login-button'>Signup</span>
+          <span className='login-button' onClick={this.handleClickPopup}>Login | </span><Link to='/signup' className='navbar-link'>Signup</Link>
           </p>
           {this.renderPopup()}
         </div>
