@@ -98,6 +98,7 @@ class App extends Component {
     })
     .then(r => r.json())
     .then(r => { this.fetchAllStories(); return r })
+    .then(r => { this.fetchAllUsers(); return r })
   }
 
   fetchPage = (pageID) => {
