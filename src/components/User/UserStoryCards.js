@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 
 const UserStoryCards = (props) => {
 
+  const handleDelete = (event) => {
+    props.fetchDeleteStory(event.target.dataset.storyid)
+  }
+
   // Main render
   return (
     props.stories.map(story => {
@@ -17,7 +21,7 @@ const UserStoryCards = (props) => {
               : null
             }
           </Link>
-          {props.delete === true ? <button>You can delete</button> : null}
+          {props.delete === true ? <button data-storyid={story.id} onClick={handleDelete}>You can delete</button> : null}
         </React.Fragment>
       )
     })

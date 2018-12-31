@@ -17,7 +17,6 @@ export default class LoginBar extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
     const foundUser = this.props.users.find(user => user.name === this.state.name)
-    console.log(foundUser)
     if (foundUser) {
       this.setState({ loginPopup: false, name: '' })
       this.props.handleUserSignIn(foundUser)

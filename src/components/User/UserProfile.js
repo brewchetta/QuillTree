@@ -30,7 +30,7 @@ const UserProfile = (props) =>  {
             <UserStoryCards
             stories={user.stories}
             userId={userId}
-            delete={props.currentUser === user}
+            delete={props.currentUser && props.currentUser.id === user.id}
             fetchDeleteStory={props.fetchDeleteStory} />
           </div>
         </div>

@@ -26,7 +26,7 @@ export default class UserCreateNewStory extends React.Component {
   }
 
   render() {
-    if (this.props.currentUser === this.props.user) {
+    if (this.props.currentUser && this.props.currentUser.id === this.props.user.id) {
       return (
         <form onSubmit={this.handleSubmit}>
         <h3>Start New Story</h3>

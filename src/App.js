@@ -35,7 +35,9 @@ class App extends Component {
     this.fetchAllStories() }
 
   //State setter functions
-  setAppState = (object) => { this.setState(object, this.logState) }
+  setAppState = (object, callback) => {
+    this.setState(object, callback)
+  }
 
   // TODO PUT THIS IN ITS OWN COMPONENT
   // users sorter
@@ -83,7 +85,7 @@ class App extends Component {
 
   // Fetches from database
   fetchAllUsers = () => {
-    return fetch(this.API + '/users').then(r=>r.json()).then(userData => this.setAppState({ users: userData }))
+    return fetch(this.API + '/users').then(r=>r.json()).then(userData => this.setState({ users: userData }, this.resetCurrentUser))
   }
 
   fetchAllStories = () => {
@@ -102,7 +104,14 @@ class App extends Component {
   }
 
   fetchDeleteStory = (storyId) => {
-    return fetch(this.API + `/stories/${storyId}`, { method: 'DELETE' }).then(r=>r.json())
+    this.setState({
+      currentUser: {...this.state.currentUser,
+        stories: {...this.state.currentUser.stories.map(story => story.id === storyId ? null : story)}
+      }
+    })
+    return fetch(this.API + `/stories/${storyId}`, { method: 'DELETE' })
+    .then(this.fetchAllStories)
+    .then(this.fetchAllUsers)
   }
 
   fetchPage = (pageID) => {
@@ -136,6 +145,16 @@ class App extends Component {
   // Handle user sign in attempts
   handleUserSignIn = (user) => {
     this.setState({ currentUser: user })
+  }
+
+  // Reset user after users refetch
+  resetCurrentUser = () => {
+    console.log('Hey in the thing')
+    if (this.state.users.length && this.state.currentUser) {
+      const newCurrentUser = this.state.users.find(user => user.id === this.state.currentUser.id)
+      console.log(newCurrentUser)
+      this.setState({ currentUser: newCurrentUser })
+    }
   }
 
   // Render routes
