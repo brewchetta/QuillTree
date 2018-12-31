@@ -25,6 +25,11 @@ export default class LoginBar extends React.Component {
     }
   }
 
+  // For switching login state
+  handleClickPopup = () => {
+    this.setState({ loginPopup: !this.state.loginPopup })
+  }
+
   // Determines whether the login popup is needed and then renders it
   renderPopup = () => {
     if (this.state.loginPopup) {
@@ -52,7 +57,9 @@ export default class LoginBar extends React.Component {
     } else {
       return (
         <div className='navbar-right'>
-          <p>I AM LINK LOGIN / SIGNUP</p>
+          <p>
+          <span className='login-button' onClick={this.handleClickPopup}>Login | </span><span className='login-button'>Signup</span>
+          </p>
           {this.renderPopup()}
         </div>
       )

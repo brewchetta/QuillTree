@@ -46,6 +46,10 @@ body {
   margin: 0;
 }
 
+.login-button {
+  cursor: pointer;
+}
+
 .login-popup {
   z-index: 3;
   position: fixed;
