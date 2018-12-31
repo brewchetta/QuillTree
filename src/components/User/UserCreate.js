@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router'
 
 export default class UserCreate extends React.Component {
 
@@ -77,15 +78,7 @@ export default class UserCreate extends React.Component {
         </div>
       )
     } else {
-      return (
-        <div className='image-right-text'>
-          <p>You're already signed in,</p>
-          <p>go write some stories!</p>
-          <div className='image-right'>
-          <img alt='scissors' src='https://images.unsplash.com/photo-1517419044068-b406d7e6972d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1537&q=80' />
-          </div>
-        </div>
-      )
+      return ( <Redirect to={`/users/${this.props.currentUser.id}`} /> )
     }
   }
 
