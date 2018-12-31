@@ -163,7 +163,8 @@ class App extends Component {
           render={props => <UserCreate {...props}
           users={this.state.users}
           fetchAllUsers={this.fetchAllUsers}
-          API={this.API} /> }
+          API={this.API}
+          currentUser={this.state.currentUser} /> }
           />
 
           <Route

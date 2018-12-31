@@ -37,7 +37,8 @@ export default class UserCreate extends React.Component {
 
   // Main render
   render() {
-    if (this.props.currentUser) {
+    console.log(this.props)
+    if (!this.props.currentUser) {
       return (
         <div>
         <form onSubmit={this.handleSubmit} className='image-right-text'>
