@@ -34,7 +34,6 @@ export default class LoginBar extends React.Component {
   // For switching login state
   handleClickPopup = () => {
     this.setState({ loginPopup: !this.state.loginPopup }, ()=>this.refs.nameInput.focus())
-
   }
 
   // Determines whether the login popup is needed and then renders it

@@ -17,12 +17,16 @@ export default class UserCreate extends React.Component {
   // Handle submit functions
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log('-----Creating-----')
-    this.fetchUserSubmit(this.state)
-    .then(newUser => { this.props.setAppState({currentUser: newUser}); return newUser })
-    .then(newUser => this.props.history.push(`/users/${newUser.id}`))
-    .then(() => this.props.fetchAllUsers())
-    .catch(response=> console.log(response))
+    // Check if name is taken
+    if (!this.props.users.find(user => user.name === this.state.name)) {
+      this.fetchUserSubmit(this.state)
+      .then(newUser => { this.props.setAppState({currentUser: newUser}); return newUser })
+      .then(newUser => this.props.history.push(`/users/${newUser.id}`))
+      .then(() => this.props.fetchAllUsers())
+      .catch(response=> console.log(response))
+    } else {
+      alert('That name has already been taken!')
+    }
   }
 
   fetchUserSubmit = (inputObject) => {
@@ -47,6 +51,7 @@ export default class UserCreate extends React.Component {
         <h3>Sign Up</h3>
 
         <label name='name'>Name</label>
+        <br/>
 
         <input type='text'
         name='name'
@@ -74,8 +79,8 @@ export default class UserCreate extends React.Component {
     } else {
       return (
         <div className='image-right-text'>
-          <p>You're already sign in</p>
-          <p>Go write some stories!</p>
+          <p>You're already signed in,</p>
+          <p>go write some stories!</p>
           <div className='image-right'>
           <img alt='scissors' src='https://images.unsplash.com/photo-1517419044068-b406d7e6972d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1537&q=80' />
           </div>
