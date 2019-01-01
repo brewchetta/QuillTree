@@ -13,7 +13,7 @@ const PagePreviousBtn = (props) => {
       className='page-text-paginate'
       key={previousPage.id}
       to={`/stories/${props.story.id}/page/${previousPage.number}`}
-      >Previous Page</Link>
+      >◁ Previous Page</Link>
     )
   } else { return null }
 }

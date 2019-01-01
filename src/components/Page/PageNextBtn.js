@@ -13,7 +13,7 @@ const PageNextBtn = (props) => {
       className='page-text-paginate'
       key={nextPage.id}
       to={`/stories/${props.story.id}/page/${nextPage.number}`}
-      >Next Page</Link>
+      >Next Page ▷</Link>
     )
   }
 
@@ -25,7 +25,7 @@ const PageNextBtn = (props) => {
       to={`/stories/${props.story.id}/page/${props.page.number}`}
       onClick={props.handleCreatePage}
       data-storyid={props.story.id}
-      >Create New Page 🍂</Link>
+      >◀ Create New Page ▶</Link>
     )
   }
 

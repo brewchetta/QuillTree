@@ -68,8 +68,8 @@ export default class PageContainer extends React.Component {
           <div className='page-text'>
 
             <div className='page-header'>
-              {this.user ? <p>{this.user.name}</p> : <p>Loading</p> }
-              {this.story ? <p>{this.story.title}</p> : <p>Loading</p> }
+              {this.user ? <Link to={`/users/${this.user.id}`}>{this.user.name}</Link> : <p>Loading</p> }
+              {this.story ? <Link to={`/stories/${this.story.id}`}>{this.story.title}</Link> : <p>Loading</p> }
               <p>Page #{(this.state.page.number * 2) - 1}</p>
 
               { this.state.edit ? <React.Fragment><p>Image:</p><input type='text' name='image' value={this.state.page.image} onChange={this.handleChange}/></React.Fragment> : null }
