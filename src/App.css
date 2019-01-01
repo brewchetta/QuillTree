@@ -128,6 +128,8 @@ input {
   padding: 2px;
   cursor: pointer;
   border: none;
+  width: 0.9em;
+  height: 1.2em;
 }
 
 .edit-button:hover {
@@ -339,11 +341,30 @@ background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 25
   height: 3em;
   overflow: hidden;
 }
+/*  */
 
-.story-index-card-image > img {
-  position: relative;
-  top: -2em;
-  width: 30em;
+/* Story Container */
+.story-container-left {
+  float: left;
+  width: 43vw;
+  min-width: 400px;
+  padding: 0;
+}
+
+.story-container-right {
+  float: left;
+  margin-left: 4vw;
+  width: 43vw;
+  min-width: 400px;
+  height: 70vh;
+}
+
+.story-container-right > img {
+  width: 100%;
+}
+
+.story-container-bg {
+  filter: opacity(0.5);
 }
 /*  */
 

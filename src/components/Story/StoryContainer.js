@@ -32,17 +32,20 @@ const StoryContainer = (props) => {
   // Renders story if exists
   if (story) {
     return (
-      <>
-      <img src={story.image} alt='' className='image-right' />
       <div className='image-right-text'>
-        <p>{story.title}</p>
-        <p className='edit-button'>✎</p>
-        <p>by {user.name}</p>
-        <p>{story.description}</p>
-        {renderPageStart()}
-        {story.pages.length > 0 ? <StoryPageOptions handlePageSelect={handlePageSelect} pages={story.pages} /> : null }
+        <img src={story.image} alt='' className='image-right story-container-bg' />
+        <div className='image-right-text story-container-left'>
+          <p>{story.title}</p>
+          <p className='edit-button'>✎</p>
+          <p>by {user.name}</p>
+          <p>{story.description}</p>
+          {renderPageStart()}
+          {story.pages.length > 0 ? <StoryPageOptions handlePageSelect={handlePageSelect} pages={story.pages} /> : null }
+        </div>
+        <div className='story-container-right'>
+          <img alt='' src={story.image} />
+        </div>
       </div>
-      </>
     )
   } else {
     return (
