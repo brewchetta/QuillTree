@@ -7,9 +7,10 @@ const PagePreviousBtn = (props) => {
   const pageNum = props.page.number
   const previousPage = pageNum ? props.story.pages.find(page => page.number === pageNum - 1 ) : null
 
-  if (pageNum && previousPage) {
+  if (pageNum && previousPage && !props.edit) {
     return (
       <Link
+      className='page-text-paginate'
       key={previousPage.id}
       to={`/stories/${props.story.id}/page/${previousPage.number}`}
       >Previous Page</Link>

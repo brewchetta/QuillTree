@@ -203,7 +203,7 @@ input {
 }
 /*  */
 
-/* Page Format: Image Right */
+/* Format: Image Right */
 .image-right-text {
   width: 90vw;
   background-image: linear-gradient(to right, rgba(255, 250, 230), rgba(255, 250, 230, 0.7), rgba(255, 250, 230, 0));
@@ -371,6 +371,97 @@ background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 25
 
 .story-container-bg {
   filter: opacity(0.5);
+}
+/*  */
+
+/* Page */
+.page-text {
+  text-align: center;
+  margin-top: 2em;
+  padding-bottom: 3em;
+  width: 100vw;
+  min-height: 85vh;
+  overflow: auto;
+  background-image: linear-gradient(to right, rgba(255, 250, 230, 0.8), rgba(255, 250, 230, 0.5), rgba(255, 250, 230, 0.1));
+  color: black;
+}
+
+.page-header {
+  text-align: left;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 2em;
+  display: inline;
+  background: black;
+  color: white;
+}
+
+.page-header p {
+  display: inline;
+  margin-right: 2em;
+}
+
+.page-header a {
+  display: inline;
+  margin-right: 2em;
+}
+
+.page-header button {
+  display: inline;
+  margin-right: 2em;
+}
+
+.page-text-inner {
+  float: left;
+  text-align: left;
+  display: inline-block;
+  padding: 1em;
+  padding-bottom: 0;
+  min-width: 46%;
+  max-width: 400px;
+}
+
+.page-text-inner p {
+  padding: 1em;
+  min-height: 73vh;
+  background: #ffddcc;
+  border: solid #b33c00 1px;
+  border-radius: 2px;
+  margin-bottom: 0;
+  white-space: pre-wrap;
+}
+
+.page-text-inner textarea {
+  margin-top: 1em;
+  width: 90%;
+  padding: 1em;
+  min-height: 73vh;
+  background: #ffddcc;
+  border: solid #b33c00 1px;
+  border-radius: 2px;
+  margin-bottom: 0;
+}
+
+.page-text-paginate {
+  text-decoration: none;
+  color: black;
+}
+
+.page-text-paginate:hover {
+  color: green;
+}
+
+.page-text-next {
+  position: fixed;
+  bottom: 5em;
+  right: 3em;
+  text-decoration: none;
+  color: black;
+}
+
+.page-text-next:hover {
+  color: green;
 }
 /*  */
 

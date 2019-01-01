@@ -64,36 +64,61 @@ export default class PageContainer extends React.Component {
     if (this.state.page.id) {
       return (
         <>
-          <div className='image-right-text'>
-            {this.user ? <p>{this.user.name}</p> : <p>Loading</p> }
-            {this.story ? <p>{this.story.title}</p> : <p>Loading</p> }
-            <p>Page #{this.state.page.number}</p>
-            <p>Image: {this.state.page.image}</p>
+          <div className='page-text'>
 
-            { this.state.edit ? <textarea name='content' value={this.state.page.content} onChange={this.handleChange}/> : <p>Content: {this.state.page.content}</p> }
+            <div className='page-header'>
+              {this.user ? <p>{this.user.name}</p> : <p>Loading</p> }
+              {this.story ? <p>{this.story.title}</p> : <p>Loading</p> }
+              <p>Page #{(this.state.page.number * 2) - 1}</p>
 
-            { this.state.edit ? <textarea name='content_2' value={this.state.page.content_2} onChange={this.handleChange}/> : <p>Content 2: {this.state.page.content_2}</p> }
+              { this.state.edit ? <React.Fragment><p>Image:</p><input type='text' name='image' value={this.state.page.image} onChange={this.handleChange}/></React.Fragment> : null }
 
-            { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> :
-             this.user === this.props.currentUser ? <button onClick={this.handleClickEdit}>Edit Page</button> : null }
-            <br/>
+              { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> :
+               this.user === this.props.currentUser ? <button onClick={this.handleClickEdit}>Edit Pages</button> : null }
 
-            {this.user === this.props.currentUser ? <button onClick={this.handleDelete}>Delete Page</button> : null }
-            <br/>
+              {this.user === this.props.currentUser ? <button onClick={this.handleDelete}>Delete Pages</button> : null }
+            </div>
 
-            <PagePreviousBtn
-            page={this.state.page}
-            story={this.story} />
+            <div className='page-text-inner'>
 
-            <PageNextBtn
-            page={this.state.page}
-            story={this.story}
-            handleCreatePage={this.handleCreatePage}
-            currentUser={this.props.currentUser}
-            user={this.user} />
+              { this.state.edit ? <textarea maxLength={1800} name='content' value={this.state.page.content} onChange={this.handleChange}/> : <p>
+              {this.state.page.content}
+              {this.state.page.content ? <br/> : null}
+              {this.state.page.content ? <br/> : null}
+              <PagePreviousBtn
+              edit={this.state.edit}
+              page={this.state.page}
+              story={this.story} />
+              </p> }
+
+
+
+            </div>
+
+            <div className='page-text-inner'>
+
+              { this.state.edit ? <textarea maxLength={1800} name='content_2' value={this.state.page.content_2} onChange={this.handleChange}/> : <p>
+              {this.state.page.content_2}
+              {this.state.page.content_2 ? <br/> : null}
+              {this.state.page.content_2 ? <br/> : null}
+              <PageNextBtn
+              edit={this.state.edit}
+              page={this.state.page}
+              story={this.story} />
+              </p> }
+
+              <PageNextBtn
+              edit={this.state.edit}
+              page={this.state.page}
+              story={this.story}
+              handleCreatePage={this.handleCreatePage}
+              currentUser={this.props.currentUser}
+              user={this.user} />
+
+            </div>
 
           </div>
-          <img alt={this.story.title} src={this.story.image} className='image-right' />
+          <img alt={this.story.title} src={this.page && this.page.image ? this.page.image : this.story.image} className='image-right' />
         </>
       )
     } else {
