@@ -11,7 +11,10 @@ const NavBar = (props) => {
         <div>
         <NavLink
         to='/'
-        exact>Home</NavLink>
+        exact
+        style={{ fontSize: '1.1em', fontFamily: "'Allura', cursive" }}>
+        QuillTree
+        </NavLink>
         </div>
 
         <div>

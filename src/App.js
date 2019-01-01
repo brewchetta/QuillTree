@@ -124,6 +124,13 @@ class App extends Component {
       const newStories = this.state.stories.map(story => story.id === updatedStory.id ? updatedStory : story)
       this.setState({ stories: newStories})
     })
+    .then(() => {
+      this.fetchSingleUser(this.state.currentUser.id)
+      .then(updatedUser => {
+        const newUsers = this.state.users.map(user => user.id === updatedUser.id ? updatedUser : user)
+        this.setState({ users: newUsers, currentUser: updatedUser })
+      })
+    })
   }
 
   fetchCreateStory = (story) => {

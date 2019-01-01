@@ -5,7 +5,7 @@ const Footer = () => {
   return (
       <footer>
       <div>
-        <p>QuillTree all rights reserved and all that junk</p>
+        <p>© Chett Tiller 2019</p>
       </div>
       <div id='photo-credit'>
         <p>Photo credits will go here</p>
