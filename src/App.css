@@ -20,16 +20,20 @@ body {
 
 /* Make the form generally larger */
 textarea {
-  width: 30em;
+  margin: 0.2em 0 0.2em 0;
+  width: 25em;
   height: 12em;
   background: #fffae6;
   font-family: 'EB Garamond', serif;
   font-size: 1em;
+  border: none;
 }
 
 input {
   font-family: 'EB Garamond', serif;
   font-size: 1em;
+  background: #fffae6;
+  border: none;
 }
 
 /* Navbar */
@@ -128,8 +132,6 @@ input {
   padding: 2px;
   cursor: pointer;
   border: none;
-  width: 0.9em;
-  height: 1.2em;
 }
 
 .edit-button:hover {
@@ -349,6 +351,10 @@ background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 25
   width: 43vw;
   min-width: 400px;
   padding: 0;
+}
+
+.story-container-input {
+  background: #ffb366;
 }
 
 .story-container-right {

@@ -113,6 +113,19 @@ class App extends Component {
     return fetch(this.API + `/stories/${id}`).then(r=>r.json())
   }
 
+  fetchUpdateStory = (story) => {
+    return fetch(this.API + `/stories/${story.id}`, {
+      method: 'PATCH',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ story: story })
+    })
+    .then(r=>r.json())
+    .then(updatedStory => {
+      const newStories = this.state.stories.map(story => story.id === updatedStory.id ? updatedStory : story)
+      this.setState({ stories: newStories})
+    })
+  }
+
   fetchCreateStory = (story) => {
     return fetch(this.API + '/stories', {
       method: 'POST',
@@ -260,7 +273,8 @@ class App extends Component {
           users={this.state.users}
           stories={this.state.stories}
           fetchCreatePage={this.fetchCreatePage}
-          currentUser={this.state.currentUser} />}
+          currentUser={this.state.currentUser}
+          fetchUpdateStory={this.fetchUpdateStory} />}
           />
 
           <Route

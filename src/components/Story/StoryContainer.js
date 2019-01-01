@@ -1,6 +1,7 @@
 import React from 'react'
 import StoryPageOptions from './StoryPageOptions'
 import LoadingMedium from '../LoadingMedium'
+import StoryContainerDescription from './StoryContainerDescription'
 
 const StoryContainer = (props) => {
 
@@ -34,17 +35,23 @@ const StoryContainer = (props) => {
     return (
       <div className='image-right-text'>
         <img src={story.image} alt='' className='image-right story-container-bg' />
+
         <div className='image-right-text story-container-left'>
-          <p>{story.title}</p>
-          <p className='edit-button'>✎</p>
-          <p>by {user.name}</p>
-          <p>{story.description}</p>
+          <StoryContainerDescription
+          story={story}
+          user={user}
+          currentUserTrue={user === props.currentUser}
+          fetchUpdateStory={props.fetchUpdateStory} />
+
           {renderPageStart()}
+
           {story.pages.length > 0 ? <StoryPageOptions handlePageSelect={handlePageSelect} pages={story.pages} /> : null }
         </div>
+
         <div className='story-container-right'>
           <img alt='' src={story.image} />
         </div>
+
       </div>
     )
   } else {
