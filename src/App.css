@@ -1,3 +1,13 @@
+/*
+font-family: 'Source Code Pro', monospace;
+This is for forms
+
+font-family: 'Allura', cursive;
+Mostly just for the title
+
+font-family: 'EB Garamond', serif;
+This is for normal text */
+
 body {
   background: #fffae6;
   color: white;
@@ -5,6 +15,7 @@ body {
   margin: 0;
   text-align: center;
   overflow-x: hidden;
+  font-family: 'EB Garamond', serif;
 }
 
 /* Make the form generally larger */
@@ -12,6 +23,13 @@ textarea {
   width: 30em;
   height: 12em;
   background: #fffae6;
+  font-family: 'EB Garamond', serif;
+  font-size: 1em;
+}
+
+input {
+  font-family: 'EB Garamond', serif;
+  font-size: 1em;
 }
 
 /* Navbar */
@@ -135,6 +153,19 @@ textarea {
   color: white;
   padding: 0.1em;
   width: 50%;
+  font-family: 'Allura', cursive;
+  padding: 0;
+  position: relative;
+  left: -0.3em;
+}
+
+.home-title > img {
+  height: 1em;
+  width: 0.8em;
+  filter: invert(1);
+  position: relative;
+  top: 0.2em;
+  left: 0.4em;
 }
 
 .home-tile-container {
