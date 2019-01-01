@@ -57,7 +57,8 @@ export default class UserCreate extends React.Component {
         <input type='text'
         name='name'
         onChange={this.handleInput}
-        value={this.state.name} />
+        value={this.state.name}
+        maxLength={25} />
         <br/>
 
         <label name='bio'>Biography</label>
@@ -66,7 +67,8 @@ export default class UserCreate extends React.Component {
         <textarea
         name='bio'
         onChange={this.handleInput}
-        value={this.state.bio} />
+        value={this.state.bio}
+        maxLength={500} />
         <br/>
 
         <button onClick={this.handleSubmit}>Submit</button>

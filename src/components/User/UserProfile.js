@@ -24,7 +24,8 @@ const UserProfile = (props) =>  {
 
           <UserProfileBio
           user={user}
-          currentUserTrue={props.currentUser === user} />
+          currentUserTrue={props.currentUser === user}
+          fetchUpdateUser={props.fetchUpdateUser} />
 
           <UserCreateNewStory
           fetchCreateStory={props.fetchCreateStory}

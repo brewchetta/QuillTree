@@ -92,6 +92,19 @@ class App extends Component {
     return fetch(this.API + `/users/${id}`).then(r=>r.json())
   }
 
+  fetchUpdateUser = (user) => {
+    return fetch(this.API + `/users/${user.id}`, {
+      method: 'PATCH',
+      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user: user })
+    })
+    .then(r=>r.json())
+    .then(updatedUser => {
+      const newUsers = this.state.users.map(user => user.id === updatedUser.id ? updatedUser : user)
+      this.setState({ users: newUsers, currentUser: updatedUser })
+    })
+  }
+
   fetchAllStories = () => {
     return fetch(this.API + '/stories').then(r=>r.json()).then(storyData=> this.setAppState({ stories: storyData }))
   }
@@ -236,7 +249,8 @@ class App extends Component {
           users={this.state.users}
           fetchCreateStory={this.fetchCreateStory}
           fetchDeleteStory={this.fetchDeleteStory}
-          currentUser={this.state.currentUser} />}
+          currentUser={this.state.currentUser}
+          fetchUpdateUser={this.fetchUpdateUser} />}
           />
 
           <Route
