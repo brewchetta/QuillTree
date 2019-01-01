@@ -195,6 +195,7 @@ button {
   background: rgba(255, 250, 230,1);
   font-size: 1.2em;
   border-radius: 1px;
+  max-width: 500px;
 }
 
 .home-story-tile {
@@ -223,6 +224,19 @@ button {
   padding-top: 10vh;
   min-height: 85vh;
   color: black;
+}
+
+.image-right-text textarea {
+  border: solid black 1px;
+}
+
+.image-right-text input {
+  border: solid black 1px;
+}
+
+.image-right-text button {
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .image-right {
