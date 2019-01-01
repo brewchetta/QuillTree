@@ -54,7 +54,7 @@ export default class StoryContainerDescription extends React.Component {
           type='text'
           value={this.state.image}
           onChange={this.handleChange}
-          style={{width: '40em'}} />
+          style={{width: '25em'}} />
 
           <button
           onClick={this.handleSubmit}>Save Changes</button>

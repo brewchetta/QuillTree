@@ -39,7 +39,7 @@ export default class PageContainer extends React.Component {
 
   // Changes page's content
   handleChange = (event) => {
-    this.setState({ page: {...this.state.page, content: event.target.value }})
+    this.setState({ page: {...this.state.page, [event.target.name]: event.target.value }})
   }
 
   // Creates new page upon clicking next page if it doesn't not exist
@@ -70,7 +70,9 @@ export default class PageContainer extends React.Component {
             <p>Page #{this.state.page.number}</p>
             <p>Image: {this.state.page.image}</p>
 
-            { this.state.edit ? <textarea value={this.state.page.content} onChange={this.handleChange}/> : <p>Content: {this.state.page.content}</p> }
+            { this.state.edit ? <textarea name='content' value={this.state.page.content} onChange={this.handleChange}/> : <p>Content: {this.state.page.content}</p> }
+
+            { this.state.edit ? <textarea name='content_2' value={this.state.page.content_2} onChange={this.handleChange}/> : <p>Content 2: {this.state.page.content_2}</p> }
 
             { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> :
              this.user === this.props.currentUser ? <button onClick={this.handleClickEdit}>Edit Page</button> : null }

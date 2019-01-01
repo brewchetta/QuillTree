@@ -21,7 +21,7 @@ class App extends Component {
 
   // Set API address
   // TODO: change back to localhost at some point so it'll stop broadcasting across network
-  API = 'http://192.168.1.2:3000/api/v1'
+  API = 'http://192.168.1.6:3000/api/v1'
 
   state = {
     users: [],
@@ -173,7 +173,7 @@ class App extends Component {
     return fetch(this.API + `/pages`, {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({page: {story_id: storyID, content: '', image: ''}})
+      body: JSON.stringify({page: {story_id: storyID, content: '', content_2: '', image: ''}})
     })
     .then(r=>r.json())
     .then(page=>{
