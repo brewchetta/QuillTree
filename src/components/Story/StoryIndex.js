@@ -16,7 +16,7 @@ export default class StoryIndex extends React.Component {
       .map(story => {
         return story.title.toLowerCase().includes(searchInput) ?
         <StoryCard key={story.id}
-        user={this.props.users.find(user => user.id === story.user_id)} 
+        user={this.props.users.find(user => user.id === story.user_id)}
         story={story} />
         : null
       })
@@ -37,12 +37,6 @@ export default class StoryIndex extends React.Component {
         <>
         <div className='image-right-text' style={{ 'marginBottom': '3em' }}>
           <div>
-            <button onClick={()=>this.props.storiesSort('alphabetically')}>Names A-Z</button>
-            <button onClick={()=>this.props.storiesSort('reverseAlphabetically')}>Names Z-A</button>
-            <button onClick={()=>this.props.storiesSort('mostPages')}>Most Pages</button>
-            <button onClick={()=>this.props.storiesSort('leastPages')}>Least Pages</button>
-
-            <br/>
 
             <input type='text'
             name='searchInput'

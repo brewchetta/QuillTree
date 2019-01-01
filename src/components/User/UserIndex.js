@@ -33,28 +33,24 @@ class UserIndex extends React.Component {
   render() {
     if (this.props.users.length) {
       return (
-        <div className='user-index'>
+        <>
+          <div className='image-right-text' style={{ 'marginBottom': '3em' }}>
 
-          <div>
-            <button onClick={()=>this.props.usersSort('alphabetically')}>Names A-Z</button>
-            <button onClick={()=>this.props.usersSort('reverseAlphabetically')}>Names Z-A</button>
-            <button onClick={()=>this.props.usersSort('mostStories')}>Most Stories</button>
-            <button onClick={()=>this.props.usersSort('leastStories')}>Least Stories</button>
+            <input type='text'
+            name='searchInput'
+            placeholder='Search Users & Titles'
+            value={this.state.searchInput}
+            onChange={this.handleInput} />
+
+            <div className='user-index-card-container'>
+              {this.renderUsers()}
+            </div>
+
           </div>
 
-          <input type='text'
-          name='searchInput'
-          placeholder='Search Users & Titles'
-          value={this.state.searchInput}
-          onChange={this.handleInput} />
-
-          <div className='user-index-card-container'>
-            {this.renderUsers()}
-          </div>
-
-          <img alt='forest' src='https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80' />
-
-        </div>
+          <img className='image-right'
+          alt='User Index' src='https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80' />
+        </>
       )
     } else { return <LoadingMedium /> }
 

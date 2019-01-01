@@ -39,50 +39,6 @@ class App extends Component {
     this.setState(object, callback)
   }
 
-  // TODO PUT THIS IN ITS OWN COMPONENT
-  // users sorter
-  usersSort = (sortType) => {
-    return (
-      sortType === 'alphabetically' ? this.sortAlphabetically()
-      : sortType === 'reverseAlphabetically' ? this.sortReverseAlphabetically()
-      : sortType === 'mostStories' ? this.sortMostStories()
-      : sortType === 'leastStories' ? this.sortLeastStories()
-      : null
-    )
-  }
-
-  sortAlphabetically = () => {
-    const sortedUsers = [...this.state.users].sort((a,b) => {
-      const aName = a.name.toLowerCase()
-      const bName = b.name.toLowerCase()
-      return aName > bName ? 1 : aName < bName ? -1 : 0
-    })
-    this.setState({ users: sortedUsers })
-  }
-
-  sortReverseAlphabetically = () => {
-    const sortedUsers = [...this.state.users].sort((a,b) => {
-      const aName = a.name.toLowerCase()
-      const bName = b.name.toLowerCase()
-      return aName < bName ? 1 : aName > bName ? -1 : 0
-    })
-    this.setState({ users: sortedUsers })
-  }
-
-  sortMostStories = () => {
-    const sortedUsers = [...this.state.users].sort((a,b) => {
-      return b.stories.length - a.stories.length
-    })
-    this.setState({ users: sortedUsers })
-  }
-
-  sortLeastStories = () => {
-    const sortedUsers = [...this.state.users].sort((a,b) => {
-      return a.stories.length - b.stories.length
-    })
-    this.setState({ users: sortedUsers })
-  }
-
   // Fetches from database
   fetchAllUsers = () => {
     return fetch(this.API + '/users').then(r=>r.json()).then(userData => this.setState({ users: userData }))

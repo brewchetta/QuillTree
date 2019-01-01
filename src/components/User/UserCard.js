@@ -13,7 +13,7 @@ const UserCard = (props) => {
     return stories.map(story => {
       return (
         <div key={story.id}>
-        <Link to={`/stories/${story.id}`}>{story.title}</Link>
+        <Link className='user-index-card-story' to={`/stories/${story.id}`}>{story.title}</Link>
         <br/>
         </div>
       )
@@ -22,7 +22,8 @@ const UserCard = (props) => {
 
   // Main render
   return (
-    <Link className='user-index-card' key={user.id} to={`/users/${user.id}`}>{user.name}
+    <Link className='user-index-card' key={user.id} to={`/users/${user.id}`}>
+    <h3>{user.name}</h3>
     <p>This user has started {user.stories.length} stories</p>
     {renderStories()}
     </Link>
