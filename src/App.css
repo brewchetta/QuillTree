@@ -36,6 +36,16 @@ input {
   border: none;
 }
 
+button {
+  font-family: 'EB Garamond', serif;
+  font-size: 1em;
+  color: white;
+  background: black;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 /* Navbar */
 .navbar {
   position: fixed;
@@ -362,7 +372,8 @@ background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 25
   margin-left: 4vw;
   width: 43vw;
   min-width: 400px;
-  height: 70vh;
+  max-height: 70vh;
+  overflow: hidden;
 }
 
 .story-container-right > img {

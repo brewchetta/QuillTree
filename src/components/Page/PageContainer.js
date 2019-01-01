@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import LoadingMedium from '../LoadingMedium'
 import PagePreviousBtn from './PagePreviousBtn'
 import PageNextBtn from './PageNextBtn'
@@ -104,16 +105,11 @@ export default class PageContainer extends React.Component {
               <PageNextBtn
               edit={this.state.edit}
               page={this.state.page}
-              story={this.story} />
-              </p> }
-
-              <PageNextBtn
-              edit={this.state.edit}
-              page={this.state.page}
               story={this.story}
               handleCreatePage={this.handleCreatePage}
               currentUser={this.props.currentUser}
               user={this.user} />
+              </p> }
 
             </div>
 
