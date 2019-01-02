@@ -5,6 +5,8 @@ export default class UserCreateNewStory extends React.Component {
   state = {
     title: '',
     image: '',
+    image_credit: '',
+    image_credit_link: '',
     description: ''
   }
 

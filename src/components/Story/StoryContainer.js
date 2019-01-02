@@ -2,6 +2,7 @@ import React from 'react'
 import StoryPageOptions from './StoryPageOptions'
 import LoadingMedium from '../LoadingMedium'
 import StoryContainerDescription from './StoryContainerDescription'
+import UnsplashContainer from '../Unsplash/UnsplashContainer'
 
 const StoryContainer = (props) => {
 
@@ -26,6 +27,11 @@ const StoryContainer = (props) => {
     }
   }
 
+  const updateImage = (image) => {
+    const updatedStory = {...story, image: image.url, image_credit: image.credit, image_credit_link: image.credit_link}
+    props.fetchUpdateStory(updatedStory)
+  }
+
   const handlePageSelect = (event) => {
     props.history.push(props.match.url + `/page/${event.target.value}`)
   }
@@ -37,6 +43,12 @@ const StoryContainer = (props) => {
         <img src={story.image} alt='' className='image-right story-container-bg' />
 
         <div className='image-right-text story-container-left'>
+          {props.currentUser && story && props.currentUser.id === story.user_id ?
+            <UnsplashContainer
+            fetchUpdateStory={props.fetchUpdateStory}
+            updateImage={updateImage}
+             />
+            : null}
           <StoryContainerDescription
           story={story}
           user={user}

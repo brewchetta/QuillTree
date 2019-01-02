@@ -139,7 +139,7 @@ class App extends Component {
     return fetch(this.API + `/pages`, {
       method: 'POST',
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({page: {story_id: storyID, content: '', content_2: '', image: ''}})
+      body: JSON.stringify({page: {story_id: storyID, content: '', content_2: '', image: '', image_credit: '', image_credit_link: ''}})
     })
     .then(r=>r.json())
     .then(page=>{

@@ -21,7 +21,7 @@ const UserStoryCards = (props) => {
               : null
             }
           </Link>
-          {props.delete === true ? <button data-storyid={story.id} onClick={handleDelete}>You can delete</button> : null}
+          {props.delete === true ? <button data-storyid={story.id} onClick={handleDelete}>Delete Story</button> : null}
         </React.Fragment>
       )
     })

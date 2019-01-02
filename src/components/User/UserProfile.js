@@ -17,14 +17,12 @@ const UserProfile = (props) =>  {
   }
 
   const updateImage = image => {
-    const updatedUser = {...user, image_url: image.url, image_credit: image.credit, image_credit_link: image.credit_link}
+    const updatedUser = {...user, image: image.url, image_credit: image.credit, image_credit_link: image.credit_link}
     console.log('updatedUser: ', updatedUser)
     props.fetchUpdateUser(updatedUser)
   }
 
   if (user) {
-    console.log('image on render: ', user.image)
-    console.log('user: ', user)
     return (
       <>
         <div className='user-profile'>
@@ -32,9 +30,7 @@ const UserProfile = (props) =>  {
           <h2>{user.name}</h2>
 
           <UnsplashContainer
-          currentUserTrue={props.currentUser === user}
           fetchUpdateUser={props.fetchUpdateUser}
-          currentUser={props.currentUser}
           updateImage={updateImage} />
 
           <UserProfileBio
@@ -61,7 +57,7 @@ const UserProfile = (props) =>  {
         </div>
 
         <div className='image-right'>
-          {user.image_url ? <img alt='user-profile' src={user.image_url} /> : null}
+          {user.image ? <img alt='user-profile' src={user.image} /> : null}
         </div>
       </>
     )
