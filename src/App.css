@@ -511,6 +511,46 @@ background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 25
 }
 /*  */
 
+/* Unsplash Form */
+.unsplash-form-container {
+  position: fixed;
+  top: 10vw;
+  left: 10vh;
+  color: black;
+  padding: 1em;
+  background: rgba(250, 250, 250, 0.95);
+  width: 80vw;
+  min-width: 400px;
+  height: 60vh;
+  min-height: 40vh;
+  z-index: 3;
+  border: black solid 2px;
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.unsplash-form-image-container {
+  width: 100%;
+}
+
+.unsplash-form-image-container > img {
+  float: left;
+  margin: 1em;
+  width: 40%;
+}
+
+.unsplash-form-container input {
+  border: solid black 1px;
+  margin: 0.5em;
+  width: 15em;
+}
+
+.unsplash-form-container button {
+  margin: 0.5em;
+}
+
+/*  */
+
 /* Footer */
 footer {
   position: fixed;

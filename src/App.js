@@ -65,6 +65,7 @@ class App extends Component {
     })
     .then(r=>r.json())
     .then(updatedUser => {
+      console.log('user returned: ', updatedUser)
       const newUsers = this.state.users.map(user => user.id === updatedUser.id ? updatedUser : user)
       this.setState({ users: newUsers, currentUser: updatedUser })
     })

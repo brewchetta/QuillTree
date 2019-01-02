@@ -3,6 +3,7 @@ import UserStoryCards from './UserStoryCards'
 import LoadingMedium from '../LoadingMedium'
 import UserCreateNewStory from './UserCreateNewStory'
 import UserProfileBio from './UserProfileBio'
+import UnsplashContainer from '../Unsplash/UnsplashContainer'
 
 const UserProfile = (props) =>  {
 
@@ -15,12 +16,26 @@ const UserProfile = (props) =>  {
     props.history.push(newURL)
   }
 
+  const updateImage = image => {
+    const updatedUser = {...user, image_url: image.url, image_credit: image.credit, image_credit_link: image.credit_link}
+    console.log('updatedUser: ', updatedUser)
+    props.fetchUpdateUser(updatedUser)
+  }
+
   if (user) {
+    console.log('image on render: ', user.image)
+    console.log('user: ', user)
     return (
       <>
         <div className='user-profile'>
 
           <h2>{user.name}</h2>
+
+          <UnsplashContainer
+          currentUserTrue={props.currentUser === user}
+          fetchUpdateUser={props.fetchUpdateUser}
+          currentUser={props.currentUser}
+          updateImage={updateImage} />
 
           <UserProfileBio
           user={user}
@@ -46,7 +61,7 @@ const UserProfile = (props) =>  {
         </div>
 
         <div className='image-right'>
-          <img alt='user-profile' src='https://images.unsplash.com/photo-1465795259008-cea85fb3a008?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80' />
+          {user.image_url ? <img alt='user-profile' src={user.image_url} /> : null}
         </div>
       </>
     )

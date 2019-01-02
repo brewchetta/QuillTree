@@ -5,7 +5,8 @@ export default class UserCreate extends React.Component {
 
   state = {
     name: '',
-    bio: ''
+    bio: '',
+    image: {}
   }
 
   // State change on input
