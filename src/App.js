@@ -21,7 +21,7 @@ class App extends Component {
 
   // Set API address
   // TODO: change back to localhost at some point so it'll stop broadcasting across network
-  API = 'http://192.168.1.6:3000/api/v1'
+  API = 'http://localhost:3000/api/v1'
 
   state = {
     users: [],
@@ -31,8 +31,17 @@ class App extends Component {
 
   // Initializers
   componentDidMount() {
-    this.fetchAllUsers()
-    this.fetchAllStories() }
+    this.fetchAllUsers().then(this.setCurrentUserFromSession)
+    this.fetchAllStories()
+  }
+
+  // Sets current user if current user persists in session
+  setCurrentUserFromSession = () => {
+    const currentUserName = sessionStorage.getItem('currentUser')
+    if (currentUserName && this.state.users.length) {
+      this.setState({ currentUser: this.state.users.find(user => user.name === currentUserName) })
+    }
+  }
 
   //State setter functions
   setAppState = (object, callback) => {
@@ -169,6 +178,7 @@ class App extends Component {
   // Handle user sign in attempts
   handleUserSignIn = (user) => {
     this.setState({ currentUser: user })
+    if (user) { sessionStorage.setItem('currentUser', user.name) }
   }
 
   // Update user after user is refetched

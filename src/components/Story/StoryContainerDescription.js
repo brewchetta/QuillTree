@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default class StoryContainerDescription extends React.Component {
 
@@ -72,7 +73,10 @@ export default class StoryContainerDescription extends React.Component {
           className='edit-button'>✎</button>
           : null }
           <h2>{this.props.story.title}</h2>
-          <p>by {this.props.user.name}</p>
+          <Link
+          to={`/users/${this.props.user.id}`}
+          style={{ textDecoration: 'none', color: 'black' }}
+          >by {this.props.user.name}</Link>
           <p>{this.props.story.description}</p>
           </>
         )

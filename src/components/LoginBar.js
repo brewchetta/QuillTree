@@ -28,6 +28,7 @@ export default class LoginBar extends React.Component {
   // For signing out
   handleLogout = () => {
     this.props.handleUserSignIn(null)
+    sessionStorage.setItem('currentUser', null)
   }
 
   // For switching login state
