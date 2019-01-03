@@ -251,17 +251,13 @@ a { color: black; }
 }
 
 .image-right {
+  margin: auto;
   position: fixed;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  max-width: 150vw;
+  min-width: 100vw;
   left: 0;
   top: 1em;
-  z-index: -1;
-}
-
-.image-right > img {
-  min-width: 100%;
-  height: 100%;
   z-index: -1;
 }
 /*  */
