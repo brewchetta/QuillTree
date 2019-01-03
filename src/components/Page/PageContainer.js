@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import LoadingMedium from '../LoadingMedium'
 import PagePreviousBtn from './PagePreviousBtn'
 import PageNextBtn from './PageNextBtn'
+import UnsplashContainer from '../Unsplash/UnsplashContainer'
 
 export default class PageContainer extends React.Component {
 
@@ -30,6 +31,12 @@ export default class PageContainer extends React.Component {
   // Starts edit mode
   handleClickEdit = () => {
     this.setState({ edit: true })
+  }
+
+  // For updating the image from unsplash
+  updateImage = (image) => {
+    const updatedPage = {...this.state.page, image: image.url, image_credit: image.credit, image_credit_link: image.credit_link}
+    this.props.fetchUpdatePage(updatedPage).then(page => this.setState({ page: page }))
   }
 
   // Sends update request and changes back to read mode
@@ -68,16 +75,15 @@ export default class PageContainer extends React.Component {
           <div className='page-text'>
 
             <div className='page-header'>
-              {this.user ? <Link to={`/users/${this.user.id}`}>{this.user.name}</Link> : <p>Loading</p> }
-              {this.story ? <Link to={`/stories/${this.story.id}`}>{this.story.title}</Link> : <p>Loading</p> }
+              {this.user ? <Link to={`/users/${this.user.id}`}>{this.user.name}</Link> : null }
+              {this.story ? <Link to={`/stories/${this.story.id}`}>{this.story.title}</Link> : null }
               <p>Page #{(this.state.page.number * 2) - 1}</p>
-
-              { this.state.edit ? <React.Fragment><p>Image:</p><input type='text' name='image' value={this.state.page.image} onChange={this.handleChange}/></React.Fragment> : null }
 
               { this.state.edit ? <button onClick={this.handleClickSave}>Save</button> :
                this.user === this.props.currentUser ? <button onClick={this.handleClickEdit}>Edit Pages</button> : null }
 
               {this.user === this.props.currentUser ? <button onClick={this.handleDelete}>Delete Pages</button> : null }
+
             </div>
 
             <div className='page-text-inner'>
@@ -92,7 +98,9 @@ export default class PageContainer extends React.Component {
               story={this.story} />
               </p> }
 
-
+              {this.user === this.props.currentUser && this.state.edit ?
+                <UnsplashContainer updateImage={this.updateImage} />
+                : null}
 
             </div>
 
@@ -114,7 +122,7 @@ export default class PageContainer extends React.Component {
             </div>
 
           </div>
-          <img alt={this.story.title} src={this.page && this.page.image ? this.page.image : this.story.image} className='image-right' />
+          <img alt={this.story.title} src={this.state.page && this.state.page.image ? this.state.page.image : this.story.image} className='image-right' />
         </>
       )
     } else {

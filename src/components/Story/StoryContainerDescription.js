@@ -21,8 +21,7 @@ export default class StoryContainerDescription extends React.Component {
     if (this.state.edit) {
       const updatedStory = {...this.props.story,
         title: this.state.title,
-        description: this.state.description,
-        image: this.state.image
+        description: this.state.description
       }
       this.props.fetchUpdateStory(updatedStory)
     }
@@ -49,13 +48,6 @@ export default class StoryContainerDescription extends React.Component {
           className='story-container-input'
           value={this.state.description}
           onChange={this.handleChange} />
-
-          <input name='image'
-          className='story-container-input'
-          type='text'
-          value={this.state.image}
-          onChange={this.handleChange}
-          style={{width: '25em'}} />
 
           <button
           onClick={this.handleSubmit}>Save Changes</button>
