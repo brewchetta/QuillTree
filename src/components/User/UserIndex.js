@@ -8,6 +8,20 @@ class UserIndex extends React.Component {
     searchInput: ''
   }
 
+  credit = {
+    url: 'https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80',
+    credit: 'Steven Kamenar',
+    credit_link: 'https://unsplash.com/@skamenar'
+  }
+
+  // Sets photo credit
+  componentDidMount() {
+    if (this.props.currentPhoto !== this.credit) {
+      setTimeout(() => this.props.setAppState({ currentPhoto: this.credit }), 100)
+    }
+    console.log('currentPhoto is: ', this.props.currentPhoto)
+  }
+
   // Renders 12 users based on search input
   renderUsers = () => {
     const searchInput = this.state.searchInput.toLowerCase()
@@ -55,7 +69,6 @@ class UserIndex extends React.Component {
     } else { return <LoadingMedium /> }
 
   }
-  // Photo Credit: Steven Kamenar | @skamenar
 
 }
 

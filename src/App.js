@@ -218,7 +218,9 @@ class App extends Component {
           path='/users'
           render={props => <UserIndex {...props}
           users={this.state.users}
-          usersSort={this.usersSort} /> }
+          usersSort={this.usersSort}
+          currentPhoto={this.state.currentPhoto}
+          setAppState={this.setAppState} /> }
           />
 
           <Route
