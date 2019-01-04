@@ -14,7 +14,6 @@ class Home extends React.Component {
     if (this.props.currentPhoto !== this.credit) {
       setTimeout(() => this.props.setAppState({ currentPhoto: this.credit }), 100)
     }
-    console.log('currentPhoto is: ', this.props.currentPhoto)
   }
 
   render() {

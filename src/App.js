@@ -247,6 +247,16 @@ class App extends Component {
           />
 
           <Route
+          path='/stories'
+          exact
+          render={props => <StoryIndex {...props}
+          stories={this.state.stories}
+          users={this.state.users}
+          currentPhoto={this.state.currentPhoto}
+          setAppState={this.setAppState} />}
+          />
+
+          <Route
           path='/stories/:storyId'
           exact
           render={props => <StoryContainer {...props}
@@ -254,15 +264,9 @@ class App extends Component {
           stories={this.state.stories}
           fetchCreatePage={this.fetchCreatePage}
           currentUser={this.state.currentUser}
-          fetchUpdateStory={this.fetchUpdateStory} />}
-          />
-
-          <Route
-          path='/stories'
-          exact
-          render={props => <StoryIndex {...props}
-          stories={this.state.stories}
-          users={this.state.users} />}
+          fetchUpdateStory={this.fetchUpdateStory}
+          currentPhoto={this.state.currentPhoto}
+          setAppState={this.setAppState} />}
           />
 
           <Route
