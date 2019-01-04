@@ -260,6 +260,10 @@ a { color: black; }
   top: 1em;
   z-index: -1;
 }
+
+.image-right img {
+  width: 100%;
+}
 /*  */
 
 /* User Index */
@@ -410,7 +414,7 @@ background-image: linear-gradient(to right, rgba(255, 250, 230, 0), rgba(255, 25
 }
 
 .story-container-bg {
-  filter: opacity(0.5);
+  filter: opacity(0.6);
 }
 /*  */
 

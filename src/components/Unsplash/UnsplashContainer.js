@@ -30,7 +30,7 @@ export default class UnsplashRouter extends React.Component {
 
   selectImage = (event) => {
     const image = this.state.searchResults[event.target.dataset.index]
-    const parsedImage = { url: image.urls.full, credit: image.user.name, credit_link: image.user.links.html }
+    const parsedImage = { url: image.urls.regular, credit: image.user.name, credit_link: image.user.links.html }
     this.props.updateImage(parsedImage)
     this.setState({ formOpen: false, searchTerm: '', pageNum: 1, searchResults: [] })
   }
