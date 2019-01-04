@@ -16,6 +16,16 @@ const UserProfile = (props) =>  {
     props.history.push(newURL)
   }
 
+  if (user && props.currentPhoto !== user.image) {
+    console.log(user)
+    const credit = {
+      url: user.image,
+      credit: user.image_credit,
+      credit_link: user.image_credit_link
+    }
+    setTimeout(() => props.setAppState({ currentPhoto: credit }), 100)
+  }
+
   const updateImage = image => {
     const updatedUser = {...user, image: image.url, image_credit: image.credit, image_credit_link: image.credit_link}
     console.log('updatedUser: ', updatedUser)

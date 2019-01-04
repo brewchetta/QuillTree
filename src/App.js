@@ -45,7 +45,6 @@ class App extends Component {
 
   //State setter functions
   setAppState = (object, callback) => {
-    console.log('object in setAppState: ', object)
     this.setState(object, callback)
   }
 
@@ -242,7 +241,9 @@ class App extends Component {
           fetchCreateStory={this.fetchCreateStory}
           fetchDeleteStory={this.fetchDeleteStory}
           currentUser={this.state.currentUser}
-          fetchUpdateUser={this.fetchUpdateUser} />}
+          fetchUpdateUser={this.fetchUpdateUser}
+          currentPhoto={this.state.currentPhoto}
+          setAppState={this.setAppState} />}
           />
 
           <Route
