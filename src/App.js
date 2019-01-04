@@ -15,7 +15,6 @@ import StoryContainer from './components/Story/StoryContainer'
 // Page
 import PageContainer from './components/Page/PageContainer'
 
-
 // App class
 class App extends Component {
 
@@ -26,7 +25,8 @@ class App extends Component {
   state = {
     users: [],
     stories: [],
-    currentUser: null
+    currentUser: null,
+    currentPhoto: {}
   }
 
   // Initializers
@@ -45,6 +45,7 @@ class App extends Component {
 
   //State setter functions
   setAppState = (object, callback) => {
+    console.log('object in setAppState: ', object)
     this.setState(object, callback)
   }
 
@@ -207,7 +208,9 @@ class App extends Component {
           path='/'
           exact
           render={props => <Home {...props}
-          users={this.state.users} />}
+          users={this.state.users}
+          currentPhoto={this.state.currentPhoto}
+          setAppState={this.setAppState} />}
           />
 
           <Route
@@ -272,7 +275,7 @@ class App extends Component {
           currentUser={this.state.currentUser}  />}
           />
 
-          <Footer />
+          <Footer currentPhoto={this.state.currentPhoto} />
         </>
       </Router>
     );

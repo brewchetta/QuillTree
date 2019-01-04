@@ -565,3 +565,8 @@ footer > div {
 #photo-credit {
   text-align: right;
 }
+
+#photo-credit a {
+  color: white;
+  text-decoration: none;
+}
