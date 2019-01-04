@@ -212,6 +212,7 @@ class App extends Component {
           setAppState={this.setAppState} />}
           />
 
+          {/* Users */}
           <Route
           exact
           path='/users'
@@ -246,6 +247,7 @@ class App extends Component {
           setAppState={this.setAppState} />}
           />
 
+          {/* Stories */}
           <Route
           path='/stories'
           exact
@@ -269,6 +271,7 @@ class App extends Component {
           setAppState={this.setAppState} />}
           />
 
+          {/* Pages */}
           <Route
           path='/stories/:storyId/page/:pageNum'
           exact
@@ -279,9 +282,12 @@ class App extends Component {
           fetchUpdatePage={this.fetchUpdatePage}
           fetchCreatePage={this.fetchCreatePage}
           fetchDeletePage={this.fetchDeletePage}
-          currentUser={this.state.currentUser}  />}
+          currentUser={this.state.currentUser}
+          currentPhoto={this.state.currentPhoto}
+          setAppState={this.setAppState} />}
           />
 
+          {/* Footer */}
           <Footer currentPhoto={this.state.currentPhoto} />
         </>
       </Router>

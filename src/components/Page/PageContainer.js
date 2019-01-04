@@ -70,6 +70,29 @@ export default class PageContainer extends React.Component {
 
     // Render page if page exists
     if (this.state.page.id) {
+
+      // Set photo credit
+      if (this.state.page.image && this.props.currentPhoto.url !== this.state.page.image) {
+
+        const credit = {
+          url: this.state.page.image,
+          credit: this.state.page.image_credit,
+          credit_link: this.state.page.image_credit_link
+        }
+        setTimeout(() => this.props.setAppState({ currentPhoto: credit }), 100)
+
+      } else if (this.story.image && this.props.currentPhoto.url !== this.story.image && this.props.currentPhoto.url !== this.state.page.image) {
+
+        const credit = {
+          url: this.story.image,
+          credit: this.story.image_credit,
+          credit_link: this.story.image_credit_link
+        }
+        setTimeout(() => this.props.setAppState({ currentPhoto: credit }), 100)
+
+      }
+
+      // Main render
       return (
         <>
           <div className='page-text'>
