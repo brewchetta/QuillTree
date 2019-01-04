@@ -16,8 +16,7 @@ const UserProfile = (props) =>  {
     props.history.push(newURL)
   }
 
-  if (user && props.currentPhoto !== user.image) {
-    console.log(user)
+  if (user && props.currentPhoto.url !== user.image) {
     const credit = {
       url: user.image,
       credit: user.image_credit,

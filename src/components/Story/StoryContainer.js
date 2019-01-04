@@ -11,6 +11,16 @@ const StoryContainer = (props) => {
   const story = props.stories.find(story => story.id === storyId)
   const user = story ? props.users.find(user => user.id === story.user_id) : {}
 
+  // For setting currentPhoto
+  if (story && props.currentPhoto.url !== story.image) {
+    const credit = {
+      url: story.image,
+      credit: story.image_credit,
+      credit_link: story.image_credit_link
+    }
+    setTimeout(() => props.setAppState({ currentPhoto: credit }), 100)
+  }
+
   const handleCreatePage = (event) => {
     props.fetchCreatePage(event).then(page => props.history.push(`${props.match.url}/page/${page.number}`))
   }

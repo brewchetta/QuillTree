@@ -19,7 +19,6 @@ class UserIndex extends React.Component {
     if (this.props.currentPhoto !== this.credit) {
       setTimeout(() => this.props.setAppState({ currentPhoto: this.credit }), 100)
     }
-    console.log('currentPhoto is: ', this.props.currentPhoto)
   }
 
   // Renders 12 users based on search input
